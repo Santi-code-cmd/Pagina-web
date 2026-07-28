@@ -522,60 +522,6 @@ a{text-decoration:none;color:inherit;}
   </div>
 </section>
 
-<!-- ═══ TRUST STRIP ═══ -->
-<div class="trust-strip">
-  <div class="trust-inner">
-    <div class="trust-item reveal">
-      <div class="trust-icon">⏱️</div>
-      <div class="trust-text">Respuesta en menos<br>de 24 horas</div>
-    </div>
-    <div class="trust-item reveal r1">
-      <div class="trust-icon">🤝</div>
-      <div class="trust-text">Atención<br>personalizada</div>
-    </div>
-    <div class="trust-item reveal r2">
-      <div class="trust-icon">📍</div>
-      <div class="trust-text">Cobertura<br>regional</div>
-    </div>
-    <div class="trust-item reveal r3">
-      <div class="trust-icon">💬</div>
-      <div class="trust-text">Asesoría<br>sin costo</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ BENEFICIOS ═══ -->
-<section class="section" id="beneficios-contacto">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:50px;">
-      <p class="eyebrow reveal">Por qué elegirnos</p>
-      <h2 class="big-title reveal r1" style="text-align:center;">La calidad que tu negocio <em>necesita</em></h2>
-    </div>
-  </div>
-  <div class="beneficios-grid">
-    <div class="benefit reveal">
-      <div class="benefit-icon">🌿</div>
-      <div class="benefit-title">100% Artesanales</div>
-      <div class="benefit-text">Recetas propias, elaboradas a mano en pequeños lotes en Tunja, Boyacá.</div>
-    </div>
-    <div class="benefit reveal r1">
-      <div class="benefit-icon">🥩</div>
-      <div class="benefit-title">Ingredientes de calidad</div>
-      <div class="benefit-text">Carne fresca y especias seleccionadas, sin atajos ni conservantes innecesarios.</div>
-    </div>
-    <div class="benefit reveal r2">
-      <div class="benefit-icon">💬</div>
-      <div class="benefit-title">Atención personalizada</div>
-      <div class="benefit-text">Un asesor te acompaña desde la primera consulta hasta la entrega de tu pedido.</div>
-    </div>
-    <div class="benefit reveal r3">
-      <div class="benefit-icon">🚚</div>
-      <div class="benefit-title">Entregas oportunas</div>
-      <div class="benefit-text">Coordinamos tiempos de entrega que se ajustan a la operación de tu negocio.</div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ FORMULARIO ═══ -->
 <section class="section" id="formulario">
   <div class="section-inner">
@@ -590,7 +536,7 @@ a{text-decoration:none;color:inherit;}
           <input class="form-input" type="text" id="f-nombre" name="nombre" required autocomplete="name">
         </div>
 
-        <div class="form-field">
+        <div class="form-field" id="empresa-field">
           <label class="form-label" for="f-empresa">Empresa <span class="opt">(opcional)</span></label>
           <input class="form-input" type="text" id="f-empresa" name="empresa" autocomplete="organization">
         </div>
@@ -624,9 +570,12 @@ a{text-decoration:none;color:inherit;}
           <label class="form-label">Productos de interés</label>
           <div class="form-check-group">
             <label class="form-check"><input type="checkbox" name="productos" value="Tradicional"> Tradicional</label>
-            <label class="form-check"><input type="checkbox" name="productos" value="Ranchero"> Ranchero</label>
+            <label class="form-check"><input type="checkbox" name="productos" value="Agridulce"> Agridulce</label>
+            <label class="form-check"><input type="checkbox" name="productos" value="Rústico"> Rústico</label>
+            <label class="form-check"><input type="checkbox" name="productos" value="Argentino"> Argentino</label>
             <label class="form-check"><input type="checkbox" name="productos" value="Picante"> Picante</label>
-            <label class="form-check"><input type="checkbox" name="productos" value="Ahumado"> Ahumado</label>
+            <label class="form-check"><input type="checkbox" name="productos" value="Tunjano"> Tunjano</label>
+            <label class="form-check"><input type="checkbox" name="productos" value="Chorizas"> Chorizas</label>
             <label class="form-check"><input type="checkbox" name="productos" value="Todos" id="f-prod-todos"> Todos</label>
           </div>
         </div>
@@ -634,10 +583,10 @@ a{text-decoration:none;color:inherit;}
         <div class="form-field full">
           <label class="form-label">Volumen estimado</label>
           <div class="form-radio-group">
-            <label class="form-radio"><input type="radio" name="volumen" value="Menos de 10 kg" required> Menos de 10 kg</label>
-            <label class="form-radio"><input type="radio" name="volumen" value="10–30 kg"> 10–30 kg</label>
-            <label class="form-radio"><input type="radio" name="volumen" value="30–100 kg"> 30–100 kg</label>
-            <label class="form-radio"><input type="radio" name="volumen" value="Más de 100 kg"> Más de 100 kg</label>
+            <label class="form-radio"><input type="radio" name="volumen" value="1 a 5 paquetes" required> 1 a 5 paquetes</label>
+            <label class="form-radio"><input type="radio" name="volumen" value="6 a 20 paquetes"> 6 a 20 paquetes</label>
+            <label class="form-radio"><input type="radio" name="volumen" value="21 a 80 paquetes"> 21 a 80 paquetes</label>
+            <label class="form-radio"><input type="radio" name="volumen" value="Más de 80 paquetes"> Más de 80 paquetes</label>
           </div>
         </div>
 
@@ -784,6 +733,18 @@ document.querySelectorAll('.faq-item').forEach(item => {
     a.style.maxHeight = !isOpen ? a.scrollHeight + 'px' : null;
   });
 });
+
+// ── Mostrar "Empresa" solo si el tipo de cliente no es "Cliente particular"
+const tipoSelect = document.getElementById('f-tipo');
+const empresaField = document.getElementById('empresa-field');
+const empresaInput = document.getElementById('f-empresa');
+function toggleEmpresaField() {
+  const esParticular = tipoSelect.value === 'Cliente particular';
+  empresaField.style.display = esParticular ? 'none' : 'flex';
+  if (esParticular) empresaInput.value = '';
+}
+tipoSelect.addEventListener('change', toggleEmpresaField);
+toggleEmpresaField();
 
 // ── "Todos" desmarca/marca los demás productos
 const prodTodos = document.getElementById('f-prod-todos');
