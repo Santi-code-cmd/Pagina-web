@@ -39,7 +39,13 @@ a{text-decoration:none;color:inherit;}
   padding:16px 0;
   border-bottom:1px solid rgba(218,164,70,.1);
 }
-.cccc
+.nav-wrap{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 40px;}
+.nav-logo{font-size:20px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--white);}
+.nav-logo em{color:var(--gold);font-style:normal;}
+.nav-links{display:flex;gap:40px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-wa{
   display:flex;align-items:center;gap:8px;
   font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--dark2);background:var(--gold);
@@ -414,16 +420,10 @@ a{text-decoration:none;color:inherit;}
       <li><a href="#galeria">Galería</a></li>
       <li><a href="#testimonios">Clientes</a></li>
       <li><a href="contacto.html">Contacto</a></li>
-      <li class="languages">
-        <a href="/es/">ES</a>
-        <a href="/en/">EN</a>
-        <a href="/fr/">FR</a>
-        <a href="/pt/">PT</a>
-        <a href="/de/">DE</a>
-      </li>
     </ul>
   </div>
 </nav>
+
 <!-- ═══ HERO ═══ -->
 <section id="hero">
   <div class="hero-media"></div>
