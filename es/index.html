@@ -4,8 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Papachoz — Chorizos Artesanales · Tunja, Boyacá</title>
-<meta name="description" content="Chorizos artesanales hechos a mano en Tunja, Boyacá. Recetas propias, ingredientes frescos y sabores únicos. Pedidos por WhatsApp para hogares y negocios.">
+<meta name="description" content="Chorizos artesanales hechos a mano en Tunja, Boyacá. Recetas propias, ingredientes frescos y sabores únicos. Arma tu pedido y envíalo por WhatsApp.">
 <link rel="canonical" href="https://papachoz.com/es/">
+<meta name="theme-color" content="#0E0F10">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -64,955 +65,878 @@
 <link rel="preload" as="image" href="img/hero.webp" type="image/webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ── RESET & VARIABLES ── */
-:root {
-  --gold:   #DAA446;
-  --orange: #E8722A;
-  --dark:   #181a1b;
-  --dark2:  #111213;
-  --mid:    #2A3136;
-  --cream:  #EBEADA;
-  --light:  #f7f5f0;
-  --white:  #ffffff;
-  --F: 'Montserrat', sans-serif;
+/* ═══════════ TOKENS ═══════════ */
+:root{
+  --bg:#0E0F10; --bg2:#151719; --card:#1B1E21; --line:rgba(255,255,255,.09);
+  --text:#F4F1EA; --muted:rgba(244,241,234,.74);
+  --gold:#DAA446; --gold2:#F0C36A; --ember:#E8722A;
+  --cream:#F7F3EA; --ink:#1A1D20; --ink-muted:#4A5157;
+  --wa:#25D366; --wa-ink:#06301A;
+  --display:'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --body:'Barlow', system-ui, sans-serif;
+  --r:18px;
+  --wrap:1200px; --gutter:clamp(16px,4vw,40px);
+  --ease:cubic-bezier(.2,.8,.2,1);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{font-family:var(--F);background:var(--light);color:var(--mid);overflow-x:hidden;}
-img{display:block;width:100%;}
-a{text-decoration:none;color:inherit;}
-
-/* ── NAVBAR ── */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
-  padding:28px 0;
-  transition:all .4s ease;
-}
-#nav.scrolled{
-  background:rgba(17,18,19,.96);
-  backdrop-filter:blur(16px);
-  padding:16px 0;
-  border-bottom:1px solid rgba(218,164,70,.1);
-}
-.nav-wrap{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 40px;}
-.nav-logo{font-size:20px;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--white);}
-.nav-logo em{color:var(--gold);font-style:normal;}
-.nav-links{display:flex;gap:40px;list-style:none;}
-.nav-links a{font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.65);transition:color .2s;}
-.nav-links a:hover{color:var(--gold);}
-.nav-wa{
-  display:flex;align-items:center;gap:8px;
-  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--dark2);background:var(--gold);
-  padding:11px 22px;transition:all .3s;
-}
-.nav-wa:hover{background:var(--orange);transform:translateY(-1px);}
-.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;position:relative;z-index:1001;}
-.hamburger span{width:24px;height:2px;background:white;transition:transform .3s,opacity .2s;}
-.hamburger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
-.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0;}
-.hamburger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
-body.menu-open{overflow:hidden;}
-@media(max-width:900px){
-  .nav-links{display:none;}
-  .nav-wa{display:none;}
-  .hamburger{display:flex;}
-  .nav-links.open{
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;
-    position:fixed;inset:0;background:var(--dark2);z-index:999;
-  }
-  .nav-links.open a{font-size:16px;color:white;}
-}
-
-/* ── HERO ── */
-#hero{
-  position:relative;height:100vh;height:100svh;min-height:600px;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-}
-.hero-media{
-  position:absolute;inset:0;
-  background:
-    linear-gradient(to bottom, rgba(17,18,19,.3) 0%, rgba(17,18,19,.6) 60%, rgba(17,18,19,.95) 100%),
-    url("img/hero.webp") center/cover no-repeat;
-}
-.hero-body{
-  position:relative;z-index:2;
-  text-align:center;
-  max-width:860px;
-  padding:0 24px;
-  animation:fadeUp .9s ease both;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:12px;
-  font-size:10px;font-weight:700;letter-spacing:5px;text-transform:uppercase;
-  color:var(--gold);margin-bottom:28px;
-}
-.hero-tag::before,.hero-tag::after{content:'';width:32px;height:1px;background:var(--gold);}
-.hero-h1{
-  font-size:clamp(3rem,8vw,7rem);font-weight:900;
-  line-height:.95;letter-spacing:-2px;
-  margin-bottom:24px;
-  background:linear-gradient(90deg, #078930 0%, #FFFFFF 50%, #DA121A 100%);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
-}
-.hero-h1 span{display:block;}
-.hero-sub{
-  font-size:clamp(.9rem,1.8vw,1.1rem);font-weight:400;
-  color:rgba(255,255,255,.85);letter-spacing:1px;
-  max-width:500px;margin:0 auto 44px;line-height:1.8;
-}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:9px;
-  background:var(--gold);color:var(--dark2);
-  font-size:13px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
-  padding:16px 36px;transition:all .3s;border:2px solid var(--gold);
-}
-.btn-primary:hover{background:var(--orange);border-color:var(--orange);transform:translateY(-2px);box-shadow:0 12px 32px rgba(232,114,42,.35);}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:9px;
-  background:transparent;color:rgba(255,255,255,.9);
-  font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
-  padding:16px 36px;border:1px solid rgba(255,255,255,.5);transition:all .3s;
-}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.hero-scroll{
-  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;z-index:2;
-  animation:scrollBounce 2s infinite;
-}
-.hero-scroll span{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.6);}
-.hero-scroll-bar{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);}
-@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
-
-/* ── TICKER (franja dorada) ── */
-#ticker{
-  background:var(--gold);padding:14px 0;overflow:hidden;white-space:nowrap;
-}
-.ticker-track{
-  display:inline-flex;gap:0;
-  animation:ticker 22s linear infinite;
-}
-.ticker-item{
-  font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
-  color:var(--dark2);padding:0 32px;
-}
-.ticker-dot{color:var(--dark2);opacity:.4;}
-@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* ── SECCIÓN GENÉRICA ── */
-.section{padding:120px 0;}
-.section-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
-.eyebrow{font-size:12px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-.big-title{font-size:clamp(2rem,4.5vw,3.6rem);font-weight:900;line-height:1.1;letter-spacing:-1px;color:var(--mid);margin-bottom:20px;}
-.big-title em{font-style:italic;color:var(--gold);}
-.rule{width:48px;height:2px;background:var(--gold);margin-bottom:28px;}
-.body-text{font-size:1rem;font-weight:400;line-height:1.9;color:rgba(42,49,54,.7);max-width:520px;}
-
-/* ── SOBRE (imagen+texto como Storia) ── */
-#sobre{background:var(--dark2);}
-#sobre .big-title{color:var(--white);}
-#sobre .body-text{color:rgba(255,255,255,.8);}
-.sobre-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;
-  min-height:620px;
-}
-@media(max-width:768px){.sobre-grid{grid-template-columns:1fr;}}
-.sobre-img{overflow:hidden;}
-.sobre-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease;}
-.sobre-img:hover img{transform:scale(1.04);}
-.sobre-text-side{
-  padding:80px 70px;display:flex;flex-direction:column;justify-content:center;
-  background:var(--dark);
-}
-@media(max-width:768px){.sobre-text-side{padding:50px 32px;}}
-.firma{margin-top:36px;display:flex;align-items:center;gap:16px;}
-.firma-bar{width:36px;height:1px;background:var(--gold);}
-.firma-name{font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
-.firma-role{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.65);margin-top:3px;letter-spacing:1px;}
-
-/* ── SLIDER DE PRODUCTOS ── */
-#productos{background:var(--light);padding:100px 0 0;}
-.slider-header{max-width:1200px;margin:0 auto;padding:0 40px 60px;display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;}
-.slider-nav{display:flex;gap:10px;}
-.slider-btn{
-  width:48px;height:48px;border:1px solid rgba(42,49,54,.2);background:transparent;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:18px;color:var(--mid);transition:all .3s;
-}
-.slider-btn:hover:not(:disabled){background:var(--gold);border-color:var(--gold);color:var(--dark2);}
-.slider-btn:disabled{opacity:.35;cursor:default;}
-
-.slider-viewport{overflow:hidden;position:relative;}
-.slider-track{
-  display:flex;gap:0;
-  transition:transform .6s cubic-bezier(.77,0,.175,1);
-}
-.slide{
-  min-width:calc(100% / 5);position:relative;overflow:hidden;cursor:pointer;
-  border-right:2px solid var(--light);
-}
-@media(max-width:900px){.slide{min-width:calc(100% / 3);}}
-@media(max-width:560px){.slide{min-width:calc(100% / 2);}}
-
-.slide-img{position:relative;overflow:hidden;aspect-ratio:2/3;}
-.slide-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.77,0,.175,1);}
-.slide:hover .slide-img img{transform:scale(1.07);}
-.slide-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top, rgba(17,18,19,.85) 0%, rgba(17,18,19,.1) 50%, transparent 100%);
-  transition:opacity .4s;
-}
-.slide-body{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:20px 18px;
-  transform:translateY(6px);transition:transform .4s ease;
-}
-.slide:hover .slide-body{transform:translateY(0);}
-.slide-flavor{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.slide-name{font-size:1.4rem;font-weight:900;color:var(--white);letter-spacing:-0.3px;margin-bottom:6px;line-height:1.1;}
-.slide-ingredients{
-  font-size:.8rem;font-weight:400;color:rgba(255,255,255,.85);letter-spacing:.5px;line-height:1.4;
-  margin-bottom:18px;
-  max-height:0;overflow:hidden;transition:max-height .4s ease;
-}
-.slide:hover .slide-ingredients,.slide:focus-within .slide-ingredients{max-height:60px;}
-.slide-price-row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
-.slide-price{font-size:1.05rem;font-weight:800;color:var(--gold);letter-spacing:-0.3px;}
-.slide-price-sub{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.75);margin-top:1px;}
-.slide-wa{
-  display:inline-flex;align-items:center;justify-content:center;gap:6px;
-  min-height:44px;min-width:44px;
-  background:#25D366;color:#0b3d1f;
-  font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
-  padding:10px 14px;border-radius:8px;transition:all .3s;border:none;cursor:pointer;
-}
-/* En pantallas táctiles no existe el "hover": se muestran siempre los ingredientes y los títulos de la galería */
-@media (hover:none){
-  .slide-ingredients{max-height:none;}
-  .slide-body{transform:none;}
-  .mosaic-caption{opacity:1;}
-}
-.slide-wa:hover{background:#1ebe57;color:white;transform:scale(1.05);}
-.slide-wa svg{width:14px;height:14px;flex-shrink:0;fill:currentColor;}
-
-.slider-dots{display:flex;justify-content:center;gap:8px;padding:36px 0 60px;}
-/* El punto visible es pequeño, pero el área que se toca mide 24x24 px */
-.dot{width:24px;height:24px;padding:0;background:none;cursor:pointer;border:none;display:flex;align-items:center;justify-content:center;}
-.dot::before{content:'';width:8px;height:8px;border-radius:4px;background:rgba(42,49,54,.3);transition:all .3s;}
-.dot.active::before{background:var(--gold);width:24px;}
-.slider-nav[hidden],.slider-dots[hidden]{display:none;}
-
-/* Mayorista strip */
-.wholesale-strip{
-  background:var(--dark2);padding:60px 40px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:30px;flex-wrap:wrap;
-  max-width:100%;
-}
-.wholesale-strip h3{font-size:1.5rem;font-weight:900;color:var(--white);letter-spacing:-0.5px;}
-.wholesale-strip p{font-size:.9rem;font-weight:400;color:rgba(255,255,255,.78);max-width:480px;margin-top:8px;line-height:1.7;}
-
-/* ── FUNDADORES (como chef de Storia) ── */
-#fundadores{background:var(--white);}
-.fundadores-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:stretch;min-height:580px;
-}
-@media(max-width:768px){.fundadores-grid{grid-template-columns:1fr;}}
-.fundadores-text{
-  padding:80px 70px;display:flex;flex-direction:column;justify-content:center;
-  background:var(--mid);
-}
-@media(max-width:768px){.fundadores-text{padding:50px 32px;}}
-.fundadores-text .big-title{color:var(--white);}
-.fundadores-text .body-text{color:rgba(255,255,255,.82);}
-.fundadores-img{overflow:hidden;}
-.fundadores-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s;}
-.fundadores-img:hover img{transform:scale(1.04);}
-
-/* ── BENEFICIOS ── */
-#beneficios{background:var(--light);overflow:hidden;}
-.beneficios-viewport{overflow:hidden;width:100%;}
-.beneficios-track{
-  display:inline-flex;gap:20px;padding:2px 20px;
-  animation:beneficiosScroll 42s linear infinite;
-}
-.beneficios-viewport:hover .beneficios-track{animation-play-state:paused;}
-@keyframes beneficiosScroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-.benefit{
-  background:var(--white);padding:44px 34px;text-align:center;
-  width:280px;flex-shrink:0;white-space:normal;
-  border:1px solid rgba(42,49,54,.08);
-  box-shadow:0 10px 30px rgba(42,49,54,.05);
-  transition:transform .3s, box-shadow .3s;
-}
-.benefit:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(42,49,54,.1);}
-.benefit-icon{display:flex;justify-content:center;margin-bottom:20px;color:var(--gold);}
-.benefit-icon svg{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}
-.benefit-title{font-size:.95rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-bottom:12px;}
-.benefit-text{font-size:.9rem;font-weight:400;line-height:1.7;color:rgba(42,49,54,.8);}
-
-/* ── GALERÍA MOSAIC ── */
-#galeria{background:var(--dark2);padding:0;overflow:hidden;}
-.galeria-inner{max-width:1200px;margin:0 auto;padding:80px 40px 40px;text-align:center;}
-.galeria-inner .big-title{color:var(--white);}
-.mosaic{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  grid-template-rows:280px 280px;
-  gap:3px;margin-top:50px;
-}
-@media(max-width:700px){
-  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,200px);}
-  .mosaic-big{grid-column:1 / -1!important;grid-row:auto!important;}
-}
-.mosaic-item{overflow:hidden;position:relative;cursor:pointer;}
-.mosaic-big{grid-column:1;grid-row:1/3;}
-.mosaic-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
-.mosaic-item:hover img{transform:scale(1.07);}
-.mosaic-caption{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(17,18,19,.75),transparent 50%);
-  opacity:0;transition:opacity .3s;
-  display:flex;align-items:flex-end;padding:20px;
-}
-.mosaic-item:hover .mosaic-caption{opacity:1;}
-.mosaic-caption span{font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
-
-/* ── TESTIMONIOS ── */
-#testimonios{background:var(--light);}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
-@media(max-width:900px){.testi-grid{grid-template-columns:1fr;}}
-.testi-card{
-  background:var(--white);padding:44px 36px;
-  border-bottom:3px solid var(--gold);
-  transition:transform .3s,box-shadow .3s;
-}
-.testi-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(42,49,54,.08);}
-.testi-stars{color:var(--gold);font-size:.85rem;letter-spacing:3px;margin-bottom:18px;}
-.testi-text{font-size:.95rem;font-style:italic;font-weight:400;line-height:1.85;color:rgba(42,49,54,.75);margin-bottom:28px;}
-.testi-author{display:flex;align-items:center;gap:14px;}
-.testi-avatar{
-  width:44px;height:44px;border-radius:50%;
-  background:var(--mid);display:flex;align-items:center;justify-content:center;
-  font-size:.95rem;font-weight:800;color:var(--gold);flex-shrink:0;
-}
-.testi-name{font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--mid);}
-.testi-role{font-size:.75rem;font-weight:400;color:var(--gold);margin-top:2px;letter-spacing:1px;}
-.testi-handle{font-size:.75rem;font-weight:400;color:rgba(42,49,54,.65);margin-top:2px;letter-spacing:.3px;}
-.testi-slide{min-width:calc(100% / 3);padding:0 12px;box-sizing:border-box;}
-@media(max-width:900px){.testi-slide{min-width:calc(100% / 2);}}
-@media(max-width:560px){.testi-slide{min-width:100%;}}
-
-/* ── CTA ── */
-#cta{
-  position:relative;padding:160px 0;text-align:center;overflow:hidden;
-  background:linear-gradient(135deg,rgba(17,18,19,.96) 0%,rgba(106,28,15,.8) 100%),
-    url("img/picante.webp") center/cover no-repeat;
-}
-.cta-inner{position:relative;z-index:2;padding:0 24px;}
-.cta-title{font-size:clamp(2.2rem,6vw,5rem);font-weight:900;letter-spacing:-2px;color:var(--white);line-height:.95;margin-bottom:20px;}
-.cta-title em{color:var(--gold);font-style:italic;}
-.cta-sub{font-size:1rem;font-weight:400;color:rgba(255,255,255,.82);max-width:440px;margin:0 auto 48px;line-height:1.8;}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-
-/* ── FOOTER ── */
-#footer{background:var(--dark2);padding:80px 0 32px;border-top:1px solid rgba(218,164,70,.12);}
-.footer-inner{max-width:1200px;margin:0 auto;padding:0 40px;}
-.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:64px;}
-@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:36px;}}
-.footer-brand{font-size:1.7rem;font-weight:900;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
-.footer-tagline{font-size:.75rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:20px;}
-.footer-desc{font-size:.88rem;font-weight:400;line-height:1.85;color:rgba(255,255,255,.72);max-width:300px;}
-.footer-socials{display:flex;gap:10px;margin-top:24px;}
-.social-btn{
-  width:44px;height:44px;border:1px solid rgba(218,164,70,.35);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  font-size:.9rem;transition:all .3s;
-}
-.social-btn img{width:22px;height:22px;object-fit:contain;display:block;}
-.social-btn svg{width:20px;height:20px;}
-.social-btn:hover{border-color:var(--gold);transform:translateY(-2px);}
-.footer-col-label{font-size:.7rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
-.footer-links{list-style:none;}
-.footer-links li{margin-bottom:12px;}
-.footer-links a{font-size:.88rem;font-weight:400;color:rgba(255,255,255,.72);transition:color .2s;display:inline-block;padding:4px 0;}
-.footer-links a:hover{color:var(--gold);}
-.contact-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
-.contact-row span:first-child{font-size:1rem;flex-shrink:0;}
-.contact-row span:last-child{font-size:.85rem;font-weight:400;color:rgba(255,255,255,.45);line-height:1.5;}
-.map-embed{width:100%;height:150px;border:1px solid rgba(218,164,70,.2);margin-top:6px;margin-bottom:10px;overflow:hidden;filter:grayscale(.4) brightness(.9);transition:filter .3s;}
-.map-embed:hover{filter:grayscale(0) brightness(1);}
-.map-embed iframe{width:100%;height:100%;border:0;display:block;}
-.map-link{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:1px;color:var(--gold);}
-.map-link:hover{color:var(--orange);}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,.06);padding-top:24px;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
-}
-.footer-copy{font-size:.75rem;font-weight:400;color:rgba(255,255,255,.55);letter-spacing:1px;}
-.footer-copy em{color:var(--gold);font-style:normal;}
-
-/* ── WHATSAPP FLOAT ── */
-.wa-float{position:fixed;bottom:28px;right:28px;z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
-.wa-tip{
-  background:var(--dark2);color:var(--white);border:1px solid rgba(218,164,70,.2);
-  font-size:.75rem;font-weight:600;letter-spacing:1px;padding:8px 16px;
-  white-space:nowrap;opacity:0;transform:translateX(8px);transition:all .3s;pointer-events:none;
-}
-.wa-float:hover .wa-tip{opacity:1;transform:translateX(0);}
-.wa-circle{
-  width:58px;height:58px;background:#25D366;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 6px 24px rgba(37,211,102,.38);
-  animation:waPulse 2.5s infinite;transition:transform .3s;
-}
-.wa-circle:hover{transform:scale(1.1);}
-.wa-circle svg{width:26px;height:26px;fill:white;}
-@keyframes waPulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.38);}50%{box-shadow:0 6px 40px rgba(37,211,102,.65);}}
-
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.r1{transition-delay:.1s;}.r2{transition-delay:.2s;}.r3{transition-delay:.3s;}.r4{transition-delay:.4s;}
-
-/* ── FOCO VISIBLE (navegación con teclado) ── */
-a:focus-visible,button:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
-.skip-link{position:absolute;left:16px;top:-60px;z-index:2000;background:var(--gold);color:var(--dark2);padding:12px 18px;font-weight:700;}
+html{scroll-behavior:smooth;scroll-padding-top:84px;}
+body{font-family:var(--body);font-size:17px;line-height:1.6;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter);}
+main{overflow-x:hidden;overflow-x:clip;}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px;}
+.skip-link{position:absolute;left:16px;top:-80px;z-index:3000;background:var(--gold);color:#111;padding:12px 18px;font-weight:700;border-radius:10px;}
 .skip-link:focus{top:16px;}
 
-/* ── MOVIMIENTO REDUCIDO (si la persona lo pidió en su sistema) ── */
+/* Tipografía */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+.eyebrow::before{content:'';width:28px;height:2px;background:currentColor;border-radius:2px;}
+.h2{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(2.4rem,6vw,4.4rem);line-height:.95;letter-spacing:-.01em;margin:14px 0 18px;}
+.h2 em{font-style:italic;color:var(--gold);}
+.lead{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--muted);max-width:560px;}
+.section{padding:clamp(72px,10vw,128px) 0;position:relative;}
+.section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(36px,5vw,56px);}
+
+/* Botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border-radius:999px;font-weight:700;font-size:16px;letter-spacing:.02em;cursor:pointer;border:2px solid transparent;transition:transform .2s var(--ease),background .2s,box-shadow .2s,border-color .2s,color .2s;white-space:nowrap;}
+.btn svg{width:20px;height:20px;flex-shrink:0;}
+.btn:active{transform:scale(.97);}
+.btn-gold{background:var(--gold);color:#16120A;box-shadow:0 10px 30px -10px rgba(218,164,70,.7);}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-wa{background:var(--wa);color:var(--wa-ink);box-shadow:0 10px 30px -10px rgba(37,211,102,.7);}
+.btn-wa:hover{background:#3BE07A;transform:translateY(-2px);}
+.btn-ghost{border-color:rgba(255,255,255,.28);color:var(--text);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-dark{background:var(--ink);color:#fff;}
+.btn-dark:hover{background:#000;transform:translateY(-2px);}
+
+/* ═══════════ BARRA DE PROGRESO ═══════════ */
+.progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--ember),var(--gold));z-index:1200;}
+
+/* ═══════════ NAV ═══════════ */
+.nav{position:fixed;inset:0 0 auto 0;z-index:1000;transition:background .3s,box-shadow .3s;}
+.nav.scrolled{background:rgba(14,15,16,.82);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);box-shadow:0 1px 0 var(--line);}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:76px;}
+.logo{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:.08em;text-transform:uppercase;}
+.logo em{font-style:normal;color:var(--gold);}
+.nav-links{display:flex;gap:30px;list-style:none;}
+.nav-links a{font-weight:600;font-size:15px;color:var(--muted);transition:color .2s;padding:8px 0;position:relative;}
+.nav-links a::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .25s var(--ease);}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{transform:scaleX(1);}
+.nav-cta{min-height:44px;padding:10px 20px;font-size:15px;}
+.nav-cta .count{display:none;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:#16120A;color:var(--gold);font-size:12px;align-items:center;justify-content:center;}
+.nav-cta.has-items .count{display:inline-flex;}
+.burger{display:none;width:44px;height:44px;border:0;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;position:relative;z-index:1101;}
+.burger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .2s;}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0;}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-right{display:flex;align-items:center;gap:8px;}
+@media (max-width:960px){
+  .nav-links{position:fixed;inset:0;z-index:1100;background:rgba(14,15,16,.97);flex-direction:column;align-items:center;justify-content:center;gap:28px;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;}
+  .nav-links.open{opacity:1;visibility:visible;}
+  .nav-links a{font-family:var(--display);font-size:34px;font-weight:700;text-transform:uppercase;color:var(--text);}
+  .burger{display:flex;}
+  body.menu-open{overflow:hidden;}
+}
+.nav-cta .label-short{display:none;}
+@media (max-width:420px){ .nav-cta .label-long{display:none;} .nav-cta .label-short{display:inline;} .logo{font-size:24px;} }
+
+/* ═══════════ HERO ═══════════ */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:120px 0 72px;overflow:hidden;isolation:isolate;}
+.hero::before{content:'';position:absolute;inset:-20%;z-index:-2;
+  background:
+    radial-gradient(40% 35% at 18% 30%, rgba(232,114,42,.28), transparent 70%),
+    radial-gradient(35% 40% at 80% 70%, rgba(218,164,70,.22), transparent 70%),
+    radial-gradient(30% 30% at 60% 10%, rgba(180,40,20,.18), transparent 70%);
+  animation:embers 14s ease-in-out infinite alternate;}
+.hero::after{content:'';position:absolute;inset:0;z-index:-1;opacity:.07;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+@keyframes embers{0%{transform:translate3d(0,0,0) scale(1);}50%{transform:translate3d(3%,-2%,0) scale(1.06);}100%{transform:translate3d(-2%,3%,0) scale(1.02);}}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,64px);align-items:center;}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 12px;border:1px solid rgba(218,164,70,.35);border-radius:999px;background:rgba(218,164,70,.08);font-size:14px;font-weight:600;color:var(--gold2);}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--wa);animation:ping 2s infinite;}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6);}80%,100%{box-shadow:0 0 0 10px rgba(37,211,102,0);}}
+.hero h1{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:clamp(3.2rem,5.3vw,5.6rem);line-height:.9;letter-spacing:-.015em;margin:22px 0;}
+@media (min-width:901px){.hero h1 .line{white-space:nowrap;}}
+@media (max-width:900px){.hero h1{font-size:clamp(3rem,13vw,5.4rem);}}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.04em;}
+.hero h1 .line > span{display:inline-block;transform:translateY(105%);animation:rise .9s var(--ease) forwards;}
+.hero h1 .line:nth-child(2) > span{animation-delay:.12s;}
+.hero h1 .line:nth-child(3) > span{animation-delay:.24s;}
+.hero h1 .gold{background:linear-gradient(90deg,var(--gold2),var(--ember) 50%,var(--gold2));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .9s var(--ease) .12s forwards, shine 6s linear 1.2s infinite;}
+@keyframes rise{to{transform:translateY(0);}}
+@keyframes shine{to{background-position:-200% 0;}}
+.hero .lead{font-size:clamp(1.05rem,1.8vw,1.25rem);margin-bottom:32px;}
+.fade-in{opacity:0;transform:translateY(16px);animation:fadeUp .8s var(--ease) forwards;}
+.d1{animation-delay:.35s;}.d2{animation-delay:.5s;}.d3{animation-delay:.65s;}
+@keyframes fadeUp{to{opacity:1;transform:none;}}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px;}
+.trust{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;}
+.avatars{display:flex;}
+.avatars span{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#16120A;border:2px solid var(--bg);margin-left:-10px;}
+.avatars span:first-child{margin-left:0;}
+.trust-txt{font-size:14px;color:var(--muted);line-height:1.35;}
+.trust-txt strong{display:block;color:var(--text);font-size:15px;}
+.stars{color:var(--gold);letter-spacing:2px;}
+.hero-visual{position:relative;}
+.hero-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/4.3;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px var(--line);transform:perspective(1000px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .4s var(--ease);}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:38% 50%;}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(14,15,16,.55));}
+.chip{position:absolute;display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:16px;background:rgba(21,23,25,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:0 20px 40px -20px rgba(0,0,0,.8);line-height:1.25;animation:float 6s ease-in-out infinite;}
+.chip strong{display:block;font-size:15px;color:var(--text);}
+.chip span{color:var(--muted);font-size:13px;}
+.chip .ico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(218,164,70,.16);color:var(--gold);flex-shrink:0;}
+.chip .ico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.chip-1{left:-28px;top:12%;}
+.chip-2{right:-20px;bottom:14%;animation-delay:-3s;}
+.chip-price{position:absolute;right:22px;top:22px;width:108px;height:108px;border-radius:50%;background:var(--ember);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:var(--display);line-height:1;box-shadow:0 18px 40px -12px rgba(232,114,42,.8);animation:spinIn 1s var(--ease) .9s both;}
+.chip-price small{font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+.chip-price b{font-size:28px;font-weight:800;margin:3px 0;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+@keyframes spinIn{from{opacity:0;transform:scale(.4) rotate(-40deg);}to{opacity:1;transform:none;}}
+@media (max-width:900px){
+  .hero{padding-top:104px;}
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-photo{aspect-ratio:4/3.4;}
+  .chip-1{left:10px;top:auto;bottom:16px;}
+  .chip-2{display:none;}
+  .chip-price{width:88px;height:88px;right:14px;top:14px;}
+  .chip-price b{font-size:23px;}
+}
+
+/* ═══════════ MARQUESINA ═══════════ */
+.marquee{background:var(--gold);color:#16120A;transform:rotate(-1.6deg);margin:-14px -2% 0;width:104%;padding:16px 0;overflow:hidden;position:relative;z-index:5;box-shadow:0 20px 40px -20px rgba(0,0,0,.6);}
+.marquee-track{display:flex;width:max-content;animation:scroll 30s linear infinite;}
+.marquee-item{display:flex;align-items:center;gap:28px;padding-right:28px;font-family:var(--display);font-weight:800;font-size:clamp(20px,2.6vw,28px);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;}
+.marquee-item svg{width:18px;height:18px;fill:#16120A;opacity:.55;}
+@keyframes scroll{to{transform:translateX(-50%);}}
+
+/* ═══════════ SABORES / ARMA TU PEDIDO ═══════════ */
+.flavors{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;}
+.flavor{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),border-color .3s,box-shadow .35s,opacity .8s var(--ease);}
+.flavor:hover{transform:translateY(-6px);border-color:rgba(218,164,70,.45);box-shadow:0 30px 60px -30px rgba(0,0,0,.9);}
+.flavor.in-cart{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 30px 60px -30px rgba(218,164,70,.45);}
+.flavor-img{position:relative;aspect-ratio:4/4.4;overflow:hidden;}
+.flavor-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);}
+.flavor:hover .flavor-img img{transform:scale(1.07);}
+.flavor-tag{position:absolute;left:12px;top:12px;padding:5px 11px;border-radius:999px;background:rgba(14,15,16,.8);backdrop-filter:blur(6px);font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold2);}
+.flavor-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:12px;flex:1;}
+.flavor-name{font-family:var(--display);font-size:30px;font-weight:800;text-transform:uppercase;line-height:1;}
+.ingr{display:flex;flex-wrap:wrap;gap:6px;}
+.ingr li{list-style:none;font-size:12.5px;font-weight:500;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.07);color:var(--muted);}
+.flavor-price{display:flex;align-items:baseline;gap:8px;margin-top:auto;}
+.flavor-price b{font-family:var(--display);font-size:28px;font-weight:800;color:var(--gold);}
+.flavor-price span{font-size:13px;color:var(--muted);}
+.add{width:100%;min-height:48px;border-radius:12px;border:0;cursor:pointer;background:var(--gold);color:#16120A;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .2s,transform .15s;}
+.add:hover{background:var(--gold2);}
+.add:active{transform:scale(.97);}
+.add svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;}
+.stepper{display:none;align-items:center;justify-content:space-between;min-height:48px;border-radius:12px;background:rgba(218,164,70,.12);border:1px solid rgba(218,164,70,.5);}
+.flavor.in-cart .add{display:none;}
+.flavor.in-cart .stepper{display:flex;}
+.stepper button{width:48px;height:48px;border:0;background:none;cursor:pointer;color:var(--gold2);font-size:24px;font-weight:600;display:flex;align-items:center;justify-content:center;border-radius:12px;}
+.stepper button:hover{background:rgba(218,164,70,.16);}
+.stepper output{font-family:var(--display);font-size:24px;font-weight:800;min-width:2ch;text-align:center;}
+.flavors-note{margin-top:22px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;color:var(--muted);font-size:15px;}
+.flavors-note svg{width:18px;height:18px;vertical-align:-3px;margin-right:6px;fill:none;stroke:var(--gold);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+.swipe-hint{display:none;font-size:14px;color:var(--muted);}
+@media (max-width:1100px){.flavors{grid-template-columns:repeat(3,1fr);}}
+@media (max-width:720px){
+  .flavors{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin:0 calc(var(--gutter) * -1);padding:4px var(--gutter) 18px;scrollbar-width:none;}
+  .flavors::-webkit-scrollbar{display:none;}
+  .flavor{flex:0 0 78%;scroll-snap-align:center;}
+  .flavor:hover{transform:none;}
+  .swipe-hint{display:block;}
+}
+
+/* ═══════════ CÓMO PEDIR ═══════════ */
+.alt{background:var(--bg2);}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s;}
+.step{position:relative;padding:32px 28px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);overflow:hidden;}
+.step::before{counter-increment:s;content:'0' counter(s);position:absolute;right:16px;top:-6px;font-family:var(--display);font-weight:800;font-size:110px;line-height:1;color:rgba(218,164,70,.1);}
+.step .ico{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--gold),var(--ember));color:#16120A;margin-bottom:22px;}
+.step .ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.step h3{font-family:var(--display);font-size:28px;font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:10px;}
+.step p{color:var(--muted);}
+@media (max-width:860px){.steps{grid-template-columns:1fr;}}
+
+/* ═══════════ HISTORIA ═══════════ */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center;}
+.story-media{position:relative;}
+.story-media .main{border-radius:24px;overflow:hidden;aspect-ratio:4/3.2;}
+.story-media .main img{width:100%;height:100%;object-fit:cover;}
+.story-media .mini{position:absolute;right:-18px;bottom:-34px;width:40%;border-radius:18px;overflow:hidden;aspect-ratio:3/4;border:6px solid var(--bg);box-shadow:0 30px 60px -20px rgba(0,0,0,.8);}
+.story-media .mini img{width:100%;height:100%;object-fit:cover;}
+.story p{color:var(--muted);margin-bottom:16px;}
+.story p strong{color:var(--text);}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px;}
+.fact{padding:18px 12px;border-radius:14px;border:1px solid var(--line);background:var(--card);text-align:center;}
+.fact b{display:block;font-family:var(--display);font-size:38px;font-weight:800;color:var(--gold);line-height:1;}
+.fact span{font-size:13px;color:var(--muted);}
+.sign{display:flex;align-items:center;gap:14px;margin-top:28px;}
+.sign::before{content:'';width:36px;height:2px;background:var(--gold);}
+.sign b{display:block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);font-size:14px;}
+.sign span{font-size:13px;color:var(--muted);}
+@media (max-width:900px){.story-grid{grid-template-columns:1fr;}.story-media{margin-bottom:40px;}.story-media .mini{right:8px;}}
+
+/* ═══════════ BENEFICIOS (BENTO) ═══════════ */
+.light{background:var(--cream);color:var(--ink);}
+.light .lead{color:var(--ink-muted);}
+.light .eyebrow{color:#8A5E12;}
+.light .h2 em{color:#A86E14;}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.tile{position:relative;padding:28px;border-radius:var(--r);background:#fff;border:1px solid rgba(26,29,32,.08);transition:transform .3s var(--ease),box-shadow .3s,opacity .8s var(--ease);overflow:hidden;}
+.tile:hover{transform:translateY(-4px);box-shadow:0 24px 50px -28px rgba(26,29,32,.35);}
+.tile .ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(218,164,70,.18);color:#8A5E12;margin-bottom:18px;}
+.tile .ico svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.tile h3{font-family:var(--display);font-size:26px;font-weight:800;text-transform:uppercase;line-height:1.05;margin-bottom:8px;}
+.tile p{color:var(--ink-muted);font-size:16px;}
+.tile.big{grid-column:span 2;grid-row:span 2;background:var(--ink);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;min-height:380px;padding:0;}
+.tile.big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.6;transition:transform .8s var(--ease);}
+.tile.big:hover img{transform:scale(1.05);}
+.tile.big .in{position:relative;padding:30px;background:linear-gradient(0deg,rgba(14,15,16,.95) 30%,transparent);}
+.tile.big h3{font-size:clamp(30px,3.6vw,44px);}
+.tile.big p{color:rgba(255,255,255,.85);}
+.tile.big .ico{background:var(--gold);color:#16120A;}
+.tile.wide{grid-column:span 2;}
+@media (max-width:960px){.bento{grid-template-columns:repeat(2,1fr);}.tile.big{grid-column:span 2;grid-row:auto;}}
+@media (max-width:560px){.bento{grid-template-columns:1fr;}.tile.big,.tile.wide{grid-column:auto;}}
+
+/* ═══════════ GALERÍA ═══════════ */
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:260px 260px;gap:12px;}
+.g-item{position:relative;border-radius:16px;overflow:hidden;}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease);}
+.g-item:hover img{transform:scale(1.08);}
+.g-item:first-child{grid-row:span 2;}
+.g-item figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(14,15,16,.82);backdrop-filter:blur(6px);font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold2);}
+@media (max-width:760px){.gallery{grid-template-columns:1fr 1fr;grid-template-rows:240px 180px 180px;}.g-item:first-child{grid-column:span 2;grid-row:auto;}}
+
+/* ═══════════ OPINIONES ═══════════ */
+.reviews{overflow:hidden;display:flex;flex-direction:column;gap:16px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);}
+.r-row{display:flex;gap:16px;width:max-content;padding-right:16px;animation:scroll 55s linear infinite;}
+.r-row.rev{animation-direction:reverse;animation-duration:62s;}
+.reviews:hover .r-row{animation-play-state:paused;}
+.review{width:min(340px,80vw);flex-shrink:0;padding:24px;border-radius:var(--r);background:var(--card);border:1px solid var(--line);}
+.review .stars{font-size:15px;margin-bottom:10px;}
+.review p{font-size:16px;margin-bottom:16px;}
+.who{display:flex;align-items:center;gap:12px;}
+.who .av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#16120A;flex-shrink:0;}
+.who b{display:block;font-size:15px;}
+.who span{font-size:13px;color:var(--muted);}
+.reviews-cta{margin-top:36px;display:flex;justify-content:center;}
+
+/* ═══════════ MAYORISTAS ═══════════ */
+.b2b{position:relative;border-radius:28px;overflow:hidden;background:linear-gradient(120deg,var(--gold) 0%,#E89A3A 55%,var(--ember) 100%);color:#16120A;padding:clamp(28px,6vw,64px);display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center;}
+.b2b::after{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;border:50px solid rgba(255,255,255,.12);}
+.b2b .eyebrow{color:#16120A;}
+.b2b .h2 em{color:#fff;}
+.b2b p{font-size:17px;max-width:520px;color:#2A2010;}
+.b2b ul{list-style:none;display:grid;gap:12px;position:relative;z-index:1;}
+.b2b li{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.3);font-weight:600;}
+.b2b li svg{width:22px;height:22px;flex-shrink:0;fill:none;stroke:#16120A;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+.b2b-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+@media (max-width:860px){.b2b{grid-template-columns:1fr;}}
+@media (max-width:420px){.b2b-ctas .btn{width:100%;}}
+
+/* ═══════════ FAQ ═══════════ */
+.faq-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(32px,6vw,80px);align-items:start;}
+.faq details{border-bottom:1px solid rgba(26,29,32,.14);}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:700;font-size:18px;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary::after{content:'';width:12px;height:12px;flex-shrink:0;border-right:2.5px solid #8A5E12;border-bottom:2.5px solid #8A5E12;transform:rotate(45deg);transition:transform .3s var(--ease);}
+.faq details[open] summary::after{transform:rotate(225deg);}
+.faq details p{padding:0 0 22px;color:var(--ink-muted);max-width:620px;}
+.faq a{color:#8A5E12;font-weight:700;text-decoration:underline;}
+@media (max-width:860px){.faq-grid{grid-template-columns:1fr;}}
+
+/* ═══════════ CTA FINAL ═══════════ */
+.final{position:relative;overflow:hidden;text-align:center;padding:clamp(96px,14vw,170px) 0;isolation:isolate;}
+.final > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;}
+.final::before{content:'';position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 80% at 50% 50%,rgba(14,15,16,.74),rgba(14,15,16,.95));}
+.final .h2{font-size:clamp(2.8rem,8vw,6rem);}
+.final .lead{margin:0 auto 34px;}
+.final .hero-ctas{justify-content:center;margin:0;}
+
+/* ═══════════ FOOTER ═══════════ */
+.footer{background:#0A0B0C;padding:72px 0 calc(32px + var(--bar-h,0px));border-top:1px solid var(--line);}
+.f-grid{display:grid;grid-template-columns:1.5fr 1fr 1.2fr;gap:48px;margin-bottom:48px;}
+.f-grid p{color:var(--muted);max-width:320px;margin:12px 0 22px;}
+.f-label{font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.f-links{list-style:none;display:grid;gap:2px;}
+.f-links a{display:inline-block;padding:6px 0;color:var(--muted);transition:color .2s;}
+.f-links a:hover{color:var(--gold);}
+.socials{display:flex;gap:10px;}
+.socials a{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:border-color .2s,transform .2s;}
+.socials a:hover{border-color:var(--gold);transform:translateY(-2px);}
+.socials img,.socials svg{width:22px;height:22px;}
+.map{border-radius:14px;overflow:hidden;height:170px;border:1px solid var(--line);margin-bottom:10px;}
+.map iframe{width:100%;height:100%;border:0;filter:grayscale(.5) contrast(1.05);}
+.map-link{color:var(--gold);font-weight:600;font-size:15px;}
+.f-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:rgba(244,241,234,.6);}
+@media (max-width:860px){.f-grid{grid-template-columns:1fr;gap:36px;}}
+
+/* ═══════════ BARRA DE PEDIDO + WHATSAPP FLOTANTE ═══════════ */
+.orderbar{position:fixed;left:50%;bottom:16px;z-index:1050;width:min(640px,calc(100% - 24px));transform:translate(-50%,160%);transition:transform .45s var(--ease);
+  display:flex;align-items:center;gap:12px;padding:10px 10px 10px 20px;border-radius:20px;background:rgba(21,23,25,.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(218,164,70,.45);box-shadow:0 24px 60px -16px rgba(0,0,0,.85);}
+.orderbar.show{transform:translate(-50%,0);}
+.ob-info{flex:1;min-width:0;line-height:1.25;}
+.ob-info b{display:block;font-family:var(--display);font-size:24px;font-weight:800;color:var(--gold);}
+.ob-info span{font-size:13.5px;color:var(--muted);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.orderbar .btn{min-height:52px;padding:12px 20px;}
+.ob-clear{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);flex-shrink:0;}
+.ob-clear:hover{color:var(--text);border-color:var(--muted);}
+.ob-clear svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+@media (max-width:480px){.orderbar .btn .label-long{display:none;}.orderbar{gap:8px;padding-left:16px;}.orderbar .btn{padding:12px 16px;}}
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:1040;width:60px;height:60px;border-radius:50%;background:var(--wa);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px -8px rgba(37,211,102,.7);transition:transform .3s var(--ease),opacity .3s;}
+.wa-float:hover{transform:scale(1.08);}
+.wa-float svg{width:30px;height:30px;}
+.wa-float::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:ring 2.4s infinite;}
+@keyframes ring{0%{transform:scale(1);opacity:.8;}100%{transform:scale(1.6);opacity:0;}}
+body.has-order .wa-float{opacity:0;transform:scale(.6);pointer-events:none;visibility:hidden;}
+.toast{position:fixed;left:50%;top:92px;z-index:1300;transform:translate(-50%,-20px);opacity:0;padding:12px 20px;border-radius:999px;background:var(--text);color:var(--ink);font-weight:700;font-size:15px;box-shadow:0 20px 40px -16px rgba(0,0,0,.6);transition:opacity .25s,transform .25s var(--ease);pointer-events:none;}
+.toast.show{opacity:1;transform:translate(-50%,0);}
+
+/* ═══════════ APARICIÓN AL HACER SCROLL ═══════════ */
+.reveal{opacity:0;translate:0 28px;transition:opacity .8s var(--ease),translate .8s var(--ease),transform .35s var(--ease),border-color .3s,box-shadow .35s;transition-delay:var(--d,0s),var(--d,0s),0s,0s,0s;}
+.reveal.in{opacity:1;translate:0 0;}
+
+/* ═══════════ MOVIMIENTO REDUCIDO ═══════════ */
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important;}
-  .ticker-track,.beneficios-track{animation:none!important;}
-  .beneficios-viewport{overflow-x:auto;}
-  .reveal{opacity:1;transform:none;}
+  .hero h1 .line > span,.fade-in{transform:none;opacity:1;}
+  .marquee-track,.r-row{animation:none!important;}
+  .reviews{overflow-x:auto;-webkit-mask-image:none;mask-image:none;}
+  .reveal{opacity:1;translate:none;}
 }
 </style>
-<noscript><style>.reveal{opacity:1;transform:none;}</style></noscript>
+<noscript><style>.reveal{opacity:1;translate:none;}</style></noscript>
 </head>
 <body>
-<a href="#productos" class="skip-link">Saltar a los productos</a>
+<a href="#sabores" class="skip-link">Saltar a los sabores</a>
+<div class="progress" aria-hidden="true"></div>
 
-<!-- ═══ NAVBAR ═══ -->
-<nav id="nav" aria-label="Principal">
-  <div class="nav-wrap">
-    <a href="#hero" class="nav-logo" aria-label="Papachoz, ir al inicio">Papa<em>choz</em></a>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
-    <ul class="nav-links" id="navlinks">
-      <li><a href="#sobre">Nosotros</a></li>
-      <li><a href="#productos">Productos</a></li>
-      <li><a href="#galeria">Galería</a></li>
-      <li><a href="#testimonios">Clientes</a></li>
-      <li><a href="contacto/">Contacto</a></li>
-    </ul>
-  </div>
-</nav>
+<!-- Íconos reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+</svg>
 
-<!-- ═══ HERO ═══ -->
-<section id="hero">
-  <div class="hero-media"></div>
-  <div class="hero-body">
-    <h1 class="hero-h1">El verdadero<span>Chorizo Artesanal de Boyacá</span></h1>
-    <p class="hero-sub">Recetas únicas, ingredientes frescos y la pasión de una familia boyacense en cada bocado.</p>
-    <div class="hero-btns">
-      <a href="https://wa.me/573212464514?text=Hola%20Papachoz,%20quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Pedir por WhatsApp
-      </a>
-      <a href="#productos" class="btn-ghost">Ver Productos</a>
+<!-- ═══════════ NAV ═══════════ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#inicio" class="logo" aria-label="Papachoz, ir al inicio">Papa<em>choz</em></a>
+    <nav aria-label="Principal">
+      <ul class="nav-links" id="navlinks">
+        <li><a href="#sabores">Sabores</a></li>
+        <li><a href="#como-pedir">Cómo pedir</a></li>
+        <li><a href="#historia">Nosotros</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#mayoristas">Mayoristas</a></li>
+        <li><a href="contacto/">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <a href="#sabores" class="btn btn-gold nav-cta" id="navCta"><span class="label-long">Arma tu pedido</span><span class="label-short">Pedir</span><span class="count" id="navCount">0</span></a>
+      <button class="burger" id="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <div class="hero-scroll"><span>Scroll</span><div class="hero-scroll-bar"></div></div>
+</header>
+
+<main>
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge fade-in"><span class="dot" aria-hidden="true"></span>Hecho a mano en Tunja, Boyacá</span>
+      <h1>
+        <span class="line"><span>El verdadero</span></span>
+        <span class="line"><span class="gold">chorizo artesanal</span></span>
+        <span class="line"><span>de Boyacá</span></span>
+      </h1>
+      <p class="lead fade-in d1">Cinco recetas propias, ingredientes frescos y la pasión de una familia boyacense en cada bocado. Elige tus sabores y pide en segundos por WhatsApp.</p>
+      <div class="hero-ctas fade-in d2">
+        <a href="#sabores" class="btn btn-gold">Arma tu pedido
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn btn-ghost"><svg aria-hidden="true"><use href="#i-wa"/></svg>Escríbenos</a>
+      </div>
+      <a href="#opiniones" class="trust fade-in d3">
+        <span class="avatars" aria-hidden="true">
+          <span style="background:#DAA446">LS</span><span style="background:#E8722A">LP</span><span style="background:#F0C36A">KT</span><span style="background:#C98A2E">MP</span>
+        </span>
+        <span class="trust-txt"><span class="stars" aria-hidden="true">★★★★★</span><strong>Clientes felices en Boyacá</strong>Lee sus opiniones</span>
+      </a>
+    </div>
+
+    <div class="hero-visual fade-in d2" id="heroVisual">
+      <div class="hero-photo" id="heroPhoto">
+        <img src="img/hero.webp" alt="Clienta sonriente mostrando un paquete de chorizos Papachoz Agridulce" width="1600" height="1066" fetchpriority="high">
+      </div>
+      <div class="chip-price" role="img" aria-label="Paquete de 5 chorizos al vacío a 25.000 pesos"><small>Paquete x5</small><b>$25.000</b><small>al vacío</small></div>
+      <div class="chip chip-1"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 8.7 5 8.7-5"/></svg></span><div><strong>Empaque al vacío</strong><span>Listo para la parrilla</span></div></div>
+      <div class="chip chip-2"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-flame"/></svg></span><div><strong>5 min por lado</strong><span>Doraditos y sabrosos</span></div></div>
+    </div>
+  </div>
 </section>
 
-<!-- ═══ TICKER ═══ -->
-<div id="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item">Chorizos Artesanales</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Tunja, Boyacá</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Tradicional</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Picante</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Rústico</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Agridulce</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Argentino</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Empaque al Vacío</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Ingredientes Frescos</span><span class="ticker-dot">·</span>
-    <!-- duplicado para loop infinito -->
-    <span class="ticker-item">Chorizos Artesanales</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Tunja, Boyacá</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Tradicional</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Picante</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Rústico</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Agridulce</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Argentino</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Empaque al Vacío</span><span class="ticker-dot">·</span>
-    <span class="ticker-item">Ingredientes Frescos</span><span class="ticker-dot">·</span>
+<!-- ═══════════ MARQUESINA ═══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item">
+      <span>Tradicional</span><svg><use href="#i-flame"/></svg>
+      <span>Picante</span><svg><use href="#i-flame"/></svg>
+      <span>Rústico</span><svg><use href="#i-flame"/></svg>
+      <span>Agridulce</span><svg><use href="#i-flame"/></svg>
+      <span>Argentino</span><svg><use href="#i-flame"/></svg>
+      <span>Hecho a mano</span><svg><use href="#i-flame"/></svg>
+      <span>Empaque al vacío</span><svg><use href="#i-flame"/></svg>
+      <span>Tunja · Boyacá</span><svg><use href="#i-flame"/></svg>
+    </div>
   </div>
 </div>
 
-<!-- ═══ SOBRE ═══ -->
-<section id="sobre" class="section" style="padding:0;">
-  <div class="sobre-grid">
-    <div class="sobre-img reveal">
-      <img src="img/tradicional.webp" alt="Chorizo Papachoz Tradicional" width="1200" height="1600" loading="lazy" decoding="async"/>
-    </div>
-    <div class="sobre-text-side">
-      <p class="eyebrow reveal">Nuestra historia</p>
-      <h2 class="big-title reveal r1">Pasión familiar<br>hecha <em>sabor</em></h2>
-      <div class="rule reveal r1"></div>
-      <p class="body-text reveal r2" style="margin-bottom:16px;">
-        Papachoz nació de la visión de <strong style="color:var(--white);">Leonardo Gómez</strong>, un cocinero auténtico que decidió crear recetas únicas: sabores genuinos, ingredientes seleccionados y una preparación que honra cada bocado.
-      </p>
-      <p class="body-text reveal r3">
-        Junto a su hijo <strong style="color:var(--white);">Santiago Gómez</strong> y toda la familia, convirtieron esa pasión en un emprendimiento desde el corazón de <strong style="color:var(--gold);">Tunja, Boyacá</strong>.
-      </p>
-      <div class="firma reveal r4">
-        <div class="firma-bar"></div>
-        <div>
-          <div class="firma-name">Leonardo & Santiago Gómez</div>
-          <div class="firma-role">Fundadores · Papachoz</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ SLIDER DE PRODUCTOS ═══ -->
-<section id="productos">
-  <div class="slider-header">
-    <div>
-      <p class="eyebrow reveal">Nuestro portafolio</p>
-      <h2 class="big-title reveal r1">Conoce nuestros<br>sabores <em>artesanales</em></h2>
-    </div>
-    <div class="slider-nav" id="productosNav">
-      <button class="slider-btn" id="prev" aria-label="Producto anterior">&#8592;</button>
-      <button class="slider-btn" id="next" aria-label="Producto siguiente">&#8594;</button>
-    </div>
-  </div>
-  <div class="slider-viewport">
-    <div class="slider-track" id="sliderTrack">
-
-      <!-- TRADICIONAL -->
-      <div class="slide">
-        <div class="slide-img"><img src="img/tradicional.webp" alt="Chorizo Tradicional" width="1200" height="1600" loading="lazy" decoding="async"/></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-body">
-          <div class="slide-name">Tradicional</div>
-          <div class="slide-ingredients">Cerdo · Cebolla · Vino Blanco · Nuez Moscada</div>
-          <div class="slide-price-row">
-            <div><div class="slide-price">$25.000</div><div class="slide-price-sub">Paquete x5 unidades</div></div>
-            <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20el%20Chorizo%20Tradicional" target="_blank" rel="noopener" class="slide-wa">
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Pedir
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- PICANTE -->
-      <div class="slide">
-        <div class="slide-img"><img src="img/picante.webp" alt="Chorizo Picante" width="1200" height="1600" loading="lazy" decoding="async"/></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-body">
-          <div class="slide-name">Picante</div>
-          <div class="slide-ingredients">Cerdo · Chile Misto · Vino Blanco · Nuez Moscada</div>
-          <div class="slide-price-row">
-            <div><div class="slide-price">$25.000</div><div class="slide-price-sub">Paquete x5 unidades</div></div>
-            <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20el%20Chorizo%20Picante" target="_blank" rel="noopener" class="slide-wa">
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Pedir
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- RÚSTICO -->
-      <div class="slide">
-        <div class="slide-img"><img src="img/rustico.webp" alt="Chorizo Rústico" width="800" height="1067" loading="lazy" decoding="async"/></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-body">
-          <div class="slide-name">Rústico</div>
-          <div class="slide-ingredients">Cerdo · Zanahoria · Vino Blanco · Nuez Moscada</div>
-          <div class="slide-price-row">
-            <div><div class="slide-price">$25.000</div><div class="slide-price-sub">Paquete x5 unidades</div></div>
-            <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20el%20Chorizo%20R%C3%BAstico" target="_blank" rel="noopener" class="slide-wa">
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Pedir
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- AGRIDULCE -->
-      <div class="slide">
-        <div class="slide-img"><img src="img/agridulce.webp" alt="Chorizo Agridulce" width="800" height="1067" loading="lazy" decoding="async"/></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-body">
-          <div class="slide-name">Agridulce</div>
-          <div class="slide-ingredients">Cerdo · Especias · Cebolla · Ajo</div>
-          <div class="slide-price-row">
-            <div><div class="slide-price">$25.000</div><div class="slide-price-sub">Paquete x5 unidades</div></div>
-            <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20el%20Chorizo%20Agridulce" target="_blank" rel="noopener" class="slide-wa">
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Pedir
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ARGENTINO -->
-      <div class="slide">
-        <div class="slide-img"><img src="img/argentino.webp" alt="Chorizo Argentino" width="800" height="1067" loading="lazy" decoding="async"/></div>
-        <div class="slide-overlay"></div>
-        <div class="slide-body">
-          <div class="slide-name">Argentino</div>
-          <div class="slide-ingredients">Cerdo · Res · Vino Blanco · Pimienta Caliente</div>
-          <div class="slide-price-row">
-            <div><div class="slide-price">$25.000</div><div class="slide-price-sub">Paquete x5 unidades</div></div>
-            <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20el%20Chorizo%20Argentino" target="_blank" rel="noopener" class="slide-wa">
-              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              Pedir
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /slider-track -->
-  </div><!-- /slider-viewport -->
-  <div class="slider-dots" id="sliderDots"></div>
-
-  <!-- Mayorista -->
-  <div class="wholesale-strip">
-    <div>
-      <h3>¿Eres restaurante o negocio?</h3>
-      <p>Empaques de 5 y 6 unidades, de un solo sabor o mix variado. Precios especiales al por mayor para negocios gastronómicos en Tunja y Boyacá.</p>
-    </div>
-    <a href="contacto/" class="btn-primary" style="flex-shrink:0;white-space:nowrap;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-      Consultar Mayoreo
-    </a>
-  </div>
-</section>
-
-<!-- ═══ FUNDADORES ═══ -->
-<section id="fundadores" class="section" style="padding:0;">
-  <div class="fundadores-grid">
-    <div class="fundadores-text">
-      <p class="eyebrow reveal">Detrás de Papachoz</p>
-      <h2 class="big-title reveal r1">Leonardo<br><em>Gómez</em></h2>
-      <div class="rule reveal r1"></div>
-      <p class="body-text reveal r2" style="margin-bottom:16px;">
-        Cocinero auténtico con una filosofía clara: un chorizo de verdad merece ingredientes de verdad. Dedicó años a perfeccionar cada receta hasta lograr sabores que no se encuentran en ningún otro lugar.
-      </p>
-      <p class="body-text reveal r3">
-        Junto a su hijo <strong style="color:var(--white);">Santiago</strong> y el respaldo de toda la familia, nació <strong style="color:var(--gold);">Papachoz</strong> — un emprendimiento con alma boyacense y vocación gourmet.
-      </p>
-      <div class="firma reveal r4">
-        <div class="firma-bar"></div>
-        <div>
-          <div class="firma-name" style="color:var(--gold);">Leonardo & Santiago Gómez</div>
-          <div class="firma-role">Fundadores · Tunja, Boyacá</div>
-        </div>
-      </div>
-    </div>
-    <div class="fundadores-img reveal">
-      <img src="img/cinco-sabores.webp" alt="Los cinco sabores de chorizo Papachoz" width="1200" height="900" loading="lazy" decoding="async"/>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ BENEFICIOS ═══ -->
-<section id="beneficios" class="section">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:60px;">
-      <p class="eyebrow reveal">¿Por qué Papachoz?</p>
-      <h2 class="big-title reveal r1" style="text-align:center;">Lo que nos hace <em>diferentes</em></h2>
-    </div>
-    <div class="beneficios-viewport">
-      <div class="beneficios-track">
-        <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div><div class="benefit-title">Elaboración Artesanal</div><div class="benefit-text">Cada chorizo hecho a mano, sin procesos industriales ni atajos. El cuidado se nota en cada bocado.</div></div>
-        <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div><div class="benefit-title">Ingredientes Frescos</div><div class="benefit-text">Sin conservantes artificiales. Solo ingredientes frescos y seleccionados que garantizan sabor real.</div></div>
-        <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/><path d="M6 17h12"/></svg></div><div class="benefit-title">Recetas Únicas</div><div class="benefit-text">Fórmulas propias que no encontrarás en ningún otro lugar. Cada sabor tiene su propia identidad.</div></div>
-        <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg></div><div class="benefit-title">Empaque al Vacío</div><div class="benefit-text">Listos para cocinar, con frescura y conservación óptima hasta el momento de la parrilla.</div></div>
-        <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div><div class="benefit-title">Atención Directa</div><div class="benefit-text">Pedidos por WhatsApp con atención personalizada. Empaques mix o por sabor para negocios.</div></div>
-        <div class="benefit"><div class="benefit-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg></div><div class="benefit-title">Orgullo Boyacense</div><div class="benefit-text">Nacidos en Tunja, Boyacá. La calidez y el carácter de la región en cada empaque.</div></div>
-        <!-- duplicado para loop infinito (lo genera el script, oculto a lectores de pantalla) -->
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ GALERÍA ═══ -->
-<section id="galeria">
-  <div class="galeria-inner">
-    <p class="eyebrow reveal" style="color:var(--gold);">Nuestra galería</p>
-    <h2 class="big-title reveal r1" style="color:var(--white);">Del fuego a <em>tu mesa</em></h2>
-  </div>
-  <div class="mosaic">
-    <div class="mosaic-item mosaic-big"><img src="img/cinco-sabores.webp" alt="Los cinco sabores de chorizo Papachoz" loading="lazy" decoding="async"/><div class="mosaic-caption"><span>Los cinco sabores</span></div></div>
-    <div class="mosaic-item"><img src="img/agridulce.webp" alt="Chorizo Agridulce" loading="lazy" decoding="async"/><div class="mosaic-caption"><span>Agridulce</span></div></div>
-    <div class="mosaic-item"><img src="img/picante.webp" alt="Chorizo Picante" loading="lazy" decoding="async"/><div class="mosaic-caption"><span>Picante</span></div></div>
-    <div class="mosaic-item"><img src="img/rustico.webp" alt="Chorizo Rústico" loading="lazy" decoding="async"/><div class="mosaic-caption"><span>Rústico</span></div></div>
-    <div class="mosaic-item"><img src="img/argentino.webp" alt="Chorizo Argentino" loading="lazy" decoding="async"/><div class="mosaic-caption"><span>Argentino</span></div></div>
-  </div>
-</section>
-
-<!-- ═══ TESTIMONIOS ═══ -->
-<section id="testimonios" class="section">
-  <div class="section-inner">
-    <div style="text-align:center;margin-bottom:60px;">
-      <p class="eyebrow reveal">Lo que dicen</p>
-      <h2 class="big-title reveal r1" style="text-align:center;">Clientes que ya <em>los amaron</em></h2>
-    </div>
-    <div class="slider-header" style="padding:0 0 40px;">
-      <div></div>
-      <div class="slider-nav" id="testiNav">
-        <button class="slider-btn" id="testiPrev" aria-label="Opinión anterior">&#8592;</button>
-        <button class="slider-btn" id="testiNext" aria-label="Opinión siguiente">&#8594;</button>
-      </div>
-    </div>
-    <div class="slider-viewport">
-      <div class="slider-track" id="testiTrack">
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">R5</div><div><div class="testi-name">Ruta 55</div><div class="testi-handle">@ruta55</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Muy buenos chorizos los de PAPACHOZ, su calidad y sabor hacen una diferencia en un producto tan popular."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">IM</div><div><div class="testi-name">Ing. Mobiltek</div><div class="testi-handle">@ing.mobiltek</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Deliciosos chorizos artesanales con recetas únicas, deben ir a probar..."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">LS</div><div><div class="testi-name">Lina Santana</div><div class="testi-handle">@lina.santana</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Probé los chorizos de PAPACHOZ… son de excelente calidad y sabor, los recomiendo."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">LP</div><div><div class="testi-name">Laura Pinilla</div><div class="testi-handle">@laura.pinilla</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Excelente sabor, y variedad me gusta la innovación en los sabores de los chorizos."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">KM</div><div><div class="testi-name">Karen Marcela Téllez</div><div class="testi-handle">@karen.tellez</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"La variedad de sabores significa una experiencia única."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">MP</div><div><div class="testi-name">Mariana Pacheco</div><div class="testi-handle">@mariana.pacheco</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Excelente producto, todos sus sabores son únicos."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">AG</div><div><div class="testi-name">Adrian Gómez Parra</div><div class="testi-handle">@adrian.gomez</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Muy ricos, variedad de sabores."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">AT</div><div><div class="testi-name">Alex Garzón Téllez</div><div class="testi-handle">@alex.garzon</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Sabores para paladares exquisitos."</p>
-          </div>
-        </div>
-        <div class="testi-slide">
-          <div class="testi-card reveal">
-            <div class="testi-author"><div class="testi-avatar">TT</div><div><div class="testi-name">Tulia Téllez</div><div class="testi-handle">@tulia.tellez</div></div></div>
-            <div class="testi-stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p class="testi-text">"Deliciosos."</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="slider-dots" id="testiDots"></div>
-    <div style="text-align:center;margin-top:12px;">
-      <a href="https://g.page/r/CYwEhSU5J39EEAE/review" target="_blank" rel="noopener" style="color:var(--gold);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:underline;">Deja tu opinión en Google →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CTA FINAL ═══ -->
-<section id="cta">
-  <div class="cta-inner">
-    <p class="eyebrow reveal" style="text-align:center;color:var(--gold);">¿Listo para el siguiente nivel?</p>
-    <h2 class="cta-title reveal r1">Doraditos y sabrosos,<br><em>como debe ser.</em></h2>
-    <p class="cta-sub reveal r2">Escríbenos por WhatsApp. Pedidos individuales y al por mayor para restaurantes en Tunja y Boyacá.</p>
-    <div class="cta-btns reveal r3">
-      <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn-primary" style="font-size:12px;padding:18px 44px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Hacer mi Pedido
-      </a>
-      <a href="contacto/" class="btn-ghost">Soy Restaurante / Negocio</a>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
-<footer id="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
+<!-- ═══════════ SABORES ═══════════ -->
+<section class="section" id="sabores">
+  <div class="wrap">
+    <div class="section-head">
       <div>
-        <div class="footer-brand">Papachoz</div>
-        <div class="footer-tagline">Chorizos Artesanales · Tunja, Boyacá</div>
-        <p class="footer-desc">Recetas únicas con pasión familiar. Ingredientes frescos y calidad artesanal para tu negocio y tu mesa.</p>
-        <div class="footer-socials">
-          <a href="https://www.instagram.com/papachoztunja/" target="_blank" rel="noopener" class="social-btn" title="Instagram"><img src="img/icono-instagram.webp" alt="Instagram"></a>
-          <a href="https://www.tiktok.com/@papachoztunja" target="_blank" rel="noopener" class="social-btn" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M16.6 5.82c-1.02-.88-1.66-2.14-1.71-3.55h-3.1v13.3c0 1.6-1.3 2.9-2.9 2.9a2.9 2.9 0 0 1-1.03-5.6c.36-.14.74-.2 1.13-.2.3 0 .6.04.88.11V9.63a6.09 6.09 0 0 0-.88-.06 6.02 6.02 0 1 0 6.02 6.02V9.4a9.13 9.13 0 0 0 5.33 1.7V8c-1.4 0-2.68-.44-3.74-1.18-.01 0-.01-.01 0 0z"/></svg></a>
-          <a href="https://www.facebook.com/profile.php?id=61572374258045" target="_blank" rel="noopener" class="social-btn" title="Facebook"><img src="img/icono-facebook.webp" alt="Facebook"></a>
-          <a href="https://wa.me/573212464514?text=Vengo%20de%20la%20p%C3%A1gina%20web%20y%20quiero%20comprar" target="_blank" rel="noopener" class="social-btn" title="WhatsApp"><img src="img/icono-whatsapp.webp" alt="WhatsApp"></a>
+        <span class="eyebrow reveal">Arma tu pedido</span>
+        <h2 class="h2 reveal" style="--d:.08s">Cinco sabores,<br><em>una obsesión</em></h2>
+        <p class="lead reveal" style="--d:.16s">Toca <strong>Agregar</strong> en los que quieras, ajusta la cantidad y envía tu pedido ya escrito por WhatsApp.</p>
+      </div>
+      <p class="swipe-hint">Desliza para ver los 5 sabores →</p>
+    </div>
+
+    <div class="flavors" id="flavors">
+      <article class="flavor reveal" data-id="tradicional" data-name="Tradicional" data-price="25000">
+        <div class="flavor-img"><span class="flavor-tag">El clásico</span><img src="img/tradicional.webp" alt="Paquete de chorizo Papachoz Tradicional" width="1200" height="1600" loading="lazy" decoding="async"></div>
+        <div class="flavor-body">
+          <h3 class="flavor-name">Tradicional</h3>
+          <ul class="ingr" aria-label="Ingredientes"><li>Cerdo</li><li>Cebolla</li><li>Vino blanco</li><li>Nuez moscada</li></ul>
+          <div class="flavor-price"><b>$25.000</b><span>paquete x5</span></div>
+          <button class="add" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar</button>
+          <div class="stepper"><button type="button" class="minus" aria-label="Quitar un paquete de Tradicional">−</button><output aria-live="polite">0</output><button type="button" class="plus" aria-label="Agregar un paquete de Tradicional">+</button></div>
+        </div>
+      </article>
+
+      <article class="flavor reveal" style="--d:.06s" data-id="picante" data-name="Picante" data-price="25000">
+        <div class="flavor-img"><span class="flavor-tag">Con chile</span><img src="img/picante.webp" alt="Paquete de chorizo Papachoz Picante" width="1200" height="1600" loading="lazy" decoding="async"></div>
+        <div class="flavor-body">
+          <h3 class="flavor-name">Picante</h3>
+          <ul class="ingr" aria-label="Ingredientes"><li>Cerdo</li><li>Chile misto</li><li>Vino blanco</li><li>Nuez moscada</li></ul>
+          <div class="flavor-price"><b>$25.000</b><span>paquete x5</span></div>
+          <button class="add" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar</button>
+          <div class="stepper"><button type="button" class="minus" aria-label="Quitar un paquete de Picante">−</button><output aria-live="polite">0</output><button type="button" class="plus" aria-label="Agregar un paquete de Picante">+</button></div>
+        </div>
+      </article>
+
+      <article class="flavor reveal" style="--d:.12s" data-id="rustico" data-name="Rústico" data-price="25000">
+        <div class="flavor-img"><span class="flavor-tag">Con zanahoria</span><img src="img/rustico.webp" alt="Paquete de chorizo Papachoz Rústico" width="800" height="1067" loading="lazy" decoding="async"></div>
+        <div class="flavor-body">
+          <h3 class="flavor-name">Rústico</h3>
+          <ul class="ingr" aria-label="Ingredientes"><li>Cerdo</li><li>Zanahoria</li><li>Vino blanco</li><li>Nuez moscada</li></ul>
+          <div class="flavor-price"><b>$25.000</b><span>paquete x5</span></div>
+          <button class="add" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar</button>
+          <div class="stepper"><button type="button" class="minus" aria-label="Quitar un paquete de Rústico">−</button><output aria-live="polite">0</output><button type="button" class="plus" aria-label="Agregar un paquete de Rústico">+</button></div>
+        </div>
+      </article>
+
+      <article class="flavor reveal" style="--d:.18s" data-id="agridulce" data-name="Agridulce" data-price="25000">
+        <div class="flavor-img"><span class="flavor-tag">Dulce y salado</span><img src="img/agridulce.webp" alt="Paquete de chorizo Papachoz Agridulce" width="800" height="1067" loading="lazy" decoding="async"></div>
+        <div class="flavor-body">
+          <h3 class="flavor-name">Agridulce</h3>
+          <ul class="ingr" aria-label="Ingredientes"><li>Cerdo</li><li>Especias</li><li>Cebolla</li><li>Ajo</li></ul>
+          <div class="flavor-price"><b>$25.000</b><span>paquete x5</span></div>
+          <button class="add" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar</button>
+          <div class="stepper"><button type="button" class="minus" aria-label="Quitar un paquete de Agridulce">−</button><output aria-live="polite">0</output><button type="button" class="plus" aria-label="Agregar un paquete de Agridulce">+</button></div>
+        </div>
+      </article>
+
+      <article class="flavor reveal" style="--d:.24s" data-id="argentino" data-name="Argentino" data-price="25000">
+        <div class="flavor-img"><span class="flavor-tag">Cerdo y res</span><img src="img/argentino.webp" alt="Paquete de chorizo Papachoz Argentino" width="800" height="1067" loading="lazy" decoding="async"></div>
+        <div class="flavor-body">
+          <h3 class="flavor-name">Argentino</h3>
+          <ul class="ingr" aria-label="Ingredientes"><li>Cerdo</li><li>Res</li><li>Vino blanco</li><li>Pimienta caliente</li></ul>
+          <div class="flavor-price"><b>$25.000</b><span>paquete x5</span></div>
+          <button class="add" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar</button>
+          <div class="stepper"><button type="button" class="minus" aria-label="Quitar un paquete de Argentino">−</button><output aria-live="polite">0</output><button type="button" class="plus" aria-label="Agregar un paquete de Argentino">+</button></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="flavors-note reveal">
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Cada paquete trae 5 chorizos</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Empacados al vacío</span>
+      <span><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Puedes mezclar sabores</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CÓMO PEDIR ═══════════ -->
+<section class="section alt" id="como-pedir">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow reveal">Así de fácil</span>
+        <h2 class="h2 reveal" style="--d:.08s">Pide en <em>3 pasos</em></h2>
+      </div>
+      <a href="#sabores" class="btn btn-gold reveal">Empezar mi pedido</a>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-flame"/></svg></div>
+        <h3>Elige tus sabores</h3>
+        <p>Agrega los paquetes que quieras. Uno de cada uno o tu favorito por partida doble.</p>
+      </div>
+      <div class="step reveal" style="--d:.1s">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div>
+        <h3>Envía por WhatsApp</h3>
+        <p>Tu pedido llega ya escrito, con sabores, cantidades y total. Sin formularios ni registros.</p>
+      </div>
+      <div class="step reveal" style="--d:.2s">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg></div>
+        <h3>Confirmamos y listo</h3>
+        <p>Te respondemos para confirmar tu pedido y acordar la entrega. ¡A la parrilla!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ HISTORIA ═══════════ -->
+<section class="section" id="historia">
+  <div class="wrap story-grid">
+    <div class="story-media reveal">
+      <div class="main"><img src="img/cinco-sabores.webp" alt="Varios paquetes de chorizos Papachoz en la mano" width="1200" height="900" loading="lazy" decoding="async"></div>
+      <div class="mini"><img src="img/tradicional.webp" alt="" width="1200" height="1600" loading="lazy" decoding="async"></div>
+    </div>
+    <div class="story">
+      <span class="eyebrow reveal">Nuestra historia</span>
+      <h2 class="h2 reveal" style="--d:.08s">Pasión familiar<br>hecha <em>sabor</em></h2>
+      <p class="reveal" style="--d:.14s">Papachoz nació de la visión de <strong>Leonardo Gómez</strong>, un cocinero auténtico con una filosofía clara: un chorizo de verdad merece ingredientes de verdad. Dedicó años a perfeccionar cada receta hasta lograr sabores que no se encuentran en ningún otro lugar.</p>
+      <p class="reveal" style="--d:.2s">Junto a su hijo <strong>Santiago Gómez</strong> y toda la familia, convirtieron esa pasión en un emprendimiento con alma boyacense desde el corazón de <strong>Tunja</strong>.</p>
+      <div class="facts reveal" style="--d:.26s">
+        <div class="fact"><b>5</b><span>recetas propias</span></div>
+        <div class="fact"><b>100%</b><span>hecho a mano</span></div>
+        <div class="fact"><b>x5</b><span>por paquete</span></div>
+      </div>
+      <div class="sign reveal" style="--d:.32s"><div><b>Leonardo &amp; Santiago Gómez</b><span>Fundadores · Tunja, Boyacá</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BENEFICIOS ═══════════ -->
+<section class="section light" id="beneficios">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow reveal">¿Por qué Papachoz?</span>
+        <h2 class="h2 reveal" style="--d:.08s">Lo que nos hace <em>diferentes</em></h2>
+      </div>
+      <p class="lead reveal" style="--d:.14s">Sin atajos industriales. Solo buen producto, buenas recetas y el cuidado de una familia.</p>
+    </div>
+    <div class="bento">
+      <div class="tile big reveal">
+        <img src="img/picante.webp" alt="" loading="lazy" decoding="async">
+        <div class="in">
+          <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-flame"/></svg></div>
+          <h3>Elaboración artesanal</h3>
+          <p>Cada chorizo hecho a mano, sin procesos industriales ni atajos. El cuidado se nota en cada bocado.</p>
+        </div>
+      </div>
+      <div class="tile reveal" style="--d:.06s">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+        <h3>Ingredientes frescos</h3>
+        <p>Sin conservantes artificiales. Solo ingredientes seleccionados.</p>
+      </div>
+      <div class="tile reveal" style="--d:.12s">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/><path d="M6 17h12"/></svg></div>
+        <h3>Recetas únicas</h3>
+        <p>Fórmulas propias. Cada sabor tiene su propia identidad.</p>
+      </div>
+      <div class="tile reveal" style="--d:.06s">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 8.7 5 8.7-5"/></svg></div>
+        <h3>Empaque al vacío</h3>
+        <p>Frescura y conservación hasta el momento de la parrilla.</p>
+      </div>
+      <div class="tile reveal" style="--d:.12s">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></div>
+        <h3>Atención directa</h3>
+        <p>Hablas con nosotros por WhatsApp, sin intermediarios.</p>
+      </div>
+      <div class="tile wide reveal" style="--d:.06s">
+        <div class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg></div>
+        <h3>Orgullo boyacense</h3>
+        <p>Nacidos en Tunja, Boyacá. La calidez y el carácter de la región en cada empaque.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ GALERÍA ═══════════ -->
+<section class="section" id="galeria">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow reveal">Galería</span>
+        <h2 class="h2 reveal" style="--d:.08s">Del fuego a <em>tu mesa</em></h2>
+      </div>
+      <a class="btn btn-ghost reveal" href="https://www.instagram.com/papachoztunja/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+    </div>
+    <div class="gallery">
+      <figure class="g-item reveal"><img src="img/cinco-sabores.webp" alt="Los sabores de chorizo Papachoz" loading="lazy" decoding="async"><figcaption>Los cinco sabores</figcaption></figure>
+      <figure class="g-item reveal" style="--d:.06s"><img src="img/agridulce.webp" alt="Chorizo Agridulce" loading="lazy" decoding="async"><figcaption>Agridulce</figcaption></figure>
+      <figure class="g-item reveal" style="--d:.12s"><img src="img/picante.webp" alt="Chorizo Picante" loading="lazy" decoding="async"><figcaption>Picante</figcaption></figure>
+      <figure class="g-item reveal" style="--d:.18s"><img src="img/rustico.webp" alt="Chorizo Rústico" loading="lazy" decoding="async"><figcaption>Rústico</figcaption></figure>
+      <figure class="g-item reveal" style="--d:.24s"><img src="img/argentino.webp" alt="Chorizo Argentino" loading="lazy" decoding="async"><figcaption>Argentino</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ OPINIONES ═══════════ -->
+<section class="section alt" id="opiniones">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow reveal">Lo que dicen</span>
+        <h2 class="h2 reveal" style="--d:.08s">Clientes que ya <em>los amaron</em></h2>
+      </div>
+    </div>
+  </div>
+  <div class="reviews" id="reviews">
+    <div class="r-row">
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Muy buenos chorizos los de PAPACHOZ, su calidad y sabor hacen una diferencia en un producto tan popular.”</p><figcaption class="who"><span class="av" style="background:#DAA446" aria-hidden="true">R5</span><span><b>Ruta 55</b><span>@ruta55</span></span></figcaption></figure>
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Deliciosos chorizos artesanales con recetas únicas, deben ir a probar...”</p><figcaption class="who"><span class="av" style="background:#E8722A" aria-hidden="true">IM</span><span><b>Ing. Mobiltek</b><span>@ing.mobiltek</span></span></figcaption></figure>
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Probé los chorizos de PAPACHOZ… son de excelente calidad y sabor, los recomiendo.”</p><figcaption class="who"><span class="av" style="background:#F0C36A" aria-hidden="true">LS</span><span><b>Lina Santana</b><span>@lina.santana</span></span></figcaption></figure>
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Excelente sabor, y variedad me gusta la innovación en los sabores de los chorizos.”</p><figcaption class="who"><span class="av" style="background:#C98A2E" aria-hidden="true">LP</span><span><b>Laura Pinilla</b><span>@laura.pinilla</span></span></figcaption></figure>
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“La variedad de sabores significa una experiencia única.”</p><figcaption class="who"><span class="av" style="background:#DAA446" aria-hidden="true">KT</span><span><b>Karen Marcela Téllez</b><span>@karen.tellez</span></span></figcaption></figure>
+    </div>
+    <div class="r-row rev">
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Excelente producto, todos sus sabores son únicos.”</p><figcaption class="who"><span class="av" style="background:#E8722A" aria-hidden="true">MP</span><span><b>Mariana Pacheco</b><span>@mariana.pacheco</span></span></figcaption></figure>
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Muy ricos, variedad de sabores.”</p><figcaption class="who"><span class="av" style="background:#F0C36A" aria-hidden="true">AG</span><span><b>Adrian Gómez Parra</b><span>@adrian.gomez</span></span></figcaption></figure>
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Sabores para paladares exquisitos.”</p><figcaption class="who"><span class="av" style="background:#C98A2E" aria-hidden="true">AT</span><span><b>Alex Garzón Téllez</b><span>@alex.garzon</span></span></figcaption></figure>
+      <figure class="review"><div class="stars" role="img" aria-label="5 de 5 estrellas">★★★★★</div><p>“Deliciosos.”</p><figcaption class="who"><span class="av" style="background:#DAA446" aria-hidden="true">TT</span><span><b>Tulia Téllez</b><span>@tulia.tellez</span></span></figcaption></figure>
+    </div>
+  </div>
+  <div class="wrap reviews-cta">
+    <a class="btn btn-ghost" href="https://g.page/r/CYwEhSU5J39EEAE/review" target="_blank" rel="noopener">Deja tu opinión en Google →</a>
+  </div>
+</section>
+
+<!-- ═══════════ MAYORISTAS ═══════════ -->
+<section class="section" id="mayoristas">
+  <div class="wrap">
+    <div class="b2b reveal">
+      <div style="position:relative;z-index:1">
+        <span class="eyebrow">Restaurantes y negocios</span>
+        <h2 class="h2">Lleva Papachoz <em>a tu carta</em></h2>
+        <p>Empaques de 5 y 6 unidades, de un solo sabor o mix variado. Precios especiales al por mayor para negocios gastronómicos en Tunja y Boyacá.</p>
+        <div class="b2b-ctas">
+          <a href="contacto/" class="btn btn-dark">Solicitar precios mayoristas</a>
+          <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Tengo%20un%20negocio%20y%20quiero%20precios%20al%20por%20mayor" target="_blank" rel="noopener" class="btn btn-wa"><svg aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+        </div>
+      </div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Empaques de 5 y 6 unidades</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Un solo sabor o mix variado</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Precios especiales al por mayor</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg>Atención directa con los fundadores</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PREGUNTAS FRECUENTES ═══════════ -->
+<section class="section light" id="preguntas">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow reveal">Preguntas frecuentes</span>
+      <h2 class="h2 reveal" style="--d:.08s">Todo lo que <em>necesitas saber</em></h2>
+      <p class="lead reveal" style="--d:.14s">¿Tienes otra duda? Escríbenos por WhatsApp y te respondemos.</p>
+    </div>
+    <div class="faq reveal" style="--d:.1s">
+      <details open><summary>¿Cómo hago mi pedido?</summary><p>Elige tus sabores en <a href="#sabores">Arma tu pedido</a>, ajusta las cantidades y toca “Pedir por WhatsApp”. Se abre un mensaje con todo listo para enviar y te confirmamos por ahí.</p></details>
+      <details><summary>¿Cuánto cuesta y cuántos chorizos trae cada paquete?</summary><p>Cada paquete trae 5 chorizos del mismo sabor y cuesta $25.000.</p></details>
+      <details><summary>¿Cómo se preparan?</summary><p>Vienen empacados al vacío, listos para cocinar. A la parrilla, unos 5 minutos por lado: ¡doraditos y sabrosos, como debe ser!</p></details>
+      <details><summary>¿Puedo mezclar sabores?</summary><p>Sí. Agrega en un mismo pedido los paquetes de los sabores que quieras.</p></details>
+      <details><summary>¿Venden al por mayor?</summary><p>Sí. Para restaurantes y negocios tenemos empaques de 5 y 6 unidades, de un solo sabor o mix, con precios especiales. Escríbenos desde la sección de <a href="#mayoristas">mayoristas</a>.</p></details>
+      <details><summary>¿Dónde están ubicados?</summary><p>Estamos en Tunja, Boyacá. Puedes ver la ubicación en el mapa al final de la página.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CTA FINAL ═══════════ -->
+<section class="final">
+  <img src="img/hero.webp" alt="" loading="lazy" decoding="async">
+  <div class="wrap">
+    <span class="eyebrow reveal">¿Listo para el asado?</span>
+    <h2 class="h2 reveal" style="--d:.08s">Doraditos y sabrosos,<br><em>como debe ser</em></h2>
+    <p class="lead reveal" style="--d:.14s">Arma tu pedido en un minuto y tenlo listo para tu próxima parrilla.</p>
+    <div class="hero-ctas reveal" style="--d:.2s">
+      <a href="#sabores" class="btn btn-gold">Arma tu pedido</a>
+      <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="btn btn-wa"><svg aria-hidden="true"><use href="#i-wa"/></svg>Pedir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#inicio" class="logo">Papa<em>choz</em></a>
+        <p>Chorizos artesanales con pasión familiar. Ingredientes frescos y calidad artesanal para tu mesa y tu negocio.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/papachoztunja/" target="_blank" rel="noopener" aria-label="Instagram"><img src="img/icono-instagram.webp" alt="" width="22" height="22"></a>
+          <a href="https://www.tiktok.com/@papachoztunja" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M16.6 5.82c-1.02-.88-1.66-2.14-1.71-3.55h-3.1v13.3c0 1.6-1.3 2.9-2.9 2.9a2.9 2.9 0 0 1-1.03-5.6c.36-.14.74-.2 1.13-.2.3 0 .6.04.88.11V9.63a6.09 6.09 0 0 0-.88-.06 6.02 6.02 0 1 0 6.02 6.02V9.4a9.13 9.13 0 0 0 5.33 1.7V8c-1.4 0-2.68-.44-3.74-1.18-.01 0-.01-.01 0 0z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61572374258045" target="_blank" rel="noopener" aria-label="Facebook"><img src="img/icono-facebook.webp" alt="" width="22" height="22"></a>
+          <a href="https://wa.me/573212464514?text=Vengo%20de%20la%20p%C3%A1gina%20web%20y%20quiero%20comprar" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="img/icono-whatsapp.webp" alt="" width="22" height="22"></a>
         </div>
       </div>
       <div>
-        <div class="footer-col-label">Navegación</div>
-        <ul class="footer-links">
-          <li><a href="#sobre">Nuestra Historia</a></li>
-          <li><a href="#productos">Productos</a></li>
-          <li><a href="#beneficios">¿Por qué Papachoz?</a></li>
-          <li><a href="#galeria">Galería</a></li>
-          <li><a href="#testimonios">Clientes</a></li>
+        <div class="f-label">Navegación</div>
+        <ul class="f-links">
+          <li><a href="#sabores">Sabores y pedidos</a></li>
+          <li><a href="#como-pedir">Cómo pedir</a></li>
+          <li><a href="#historia">Nuestra historia</a></li>
+          <li><a href="#opiniones">Opiniones</a></li>
+          <li><a href="#mayoristas">Mayoristas</a></li>
+          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+          <li><a href="contacto/">Contacto</a></li>
         </ul>
       </div>
       <div>
-        <div class="footer-col-label">Ubicación</div>
-        <div class="map-embed">
-          <iframe src="https://www.google.com/maps?q=Papachoz+Tunja,5.5718741,-73.344459&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Papachoz en Tunja"></iframe>
-        </div>
+        <div class="f-label">Ubicación</div>
+        <div class="map"><iframe src="https://www.google.com/maps?q=Papachoz+Tunja,5.5718741,-73.344459&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación de Papachoz en Tunja"></iframe></div>
         <a href="https://maps.app.goo.gl/fRsCV2QwuJjxQsFSA" target="_blank" rel="noopener" class="map-link">Ver en Google Maps →</a>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© <span id="year">2026</span> <em>Papachoz</em> · Chorizos Artesanales · Tunja, Boyacá</span>
-      <span class="footer-copy">Hecho con <em>♥</em> en Colombia</span>
+    <div class="f-bottom">
+      <span>© <span id="year">2026</span> Papachoz · Chorizos artesanales · Tunja, Boyacá</span>
+      <a href="https://wa.me/573212464514" target="_blank" rel="noopener">+57 321 246 4514</a>
     </div>
   </div>
 </footer>
 
-<!-- ═══ WA FLOAT ═══ -->
-<div class="wa-float">
-  <div class="wa-tip" aria-hidden="true">¡Haz tu pedido ahora!</div>
-  <a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="wa-circle" aria-label="Hacer pedido por WhatsApp">
-    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="white"/></svg>
-  </a>
+<!-- ═══════════ BARRA DE PEDIDO ═══════════ -->
+<div class="orderbar" id="orderbar" role="region" aria-label="Tu pedido" hidden>
+  <div class="ob-info" aria-live="polite"><b id="obTotal">$0</b><span id="obSummary">0 paquetes</span></div>
+  <button class="ob-clear" id="obClear" type="button" aria-label="Vaciar pedido"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>
+  <a class="btn btn-wa" id="obSend" href="#" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg><span><span class="label-long">Pedir por </span>WhatsApp</span></a>
 </div>
 
+<a href="https://wa.me/573212464514?text=Hola%20Papachoz!%20Quiero%20hacer%20un%20pedido" target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <script>
-// ── Navbar scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+(() => {
+  const WA = '573212464514';
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = s => document.querySelector(s);
 
-// ── Menú móvil
-const hbg = document.getElementById('hamburger');
-const nls = document.getElementById('navlinks');
-function setMenu(open) {
-  nls.classList.toggle('open', open);
-  hbg.setAttribute('aria-expanded', open);
-  hbg.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-  document.body.classList.toggle('menu-open', open);
-}
-hbg.addEventListener('click', () => setMenu(!nls.classList.contains('open')));
-nls.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-document.addEventListener('keydown', e => { if (e.key === 'Escape' && nls.classList.contains('open')) { setMenu(false); hbg.focus(); } });
+  // ── Navegación: fondo al hacer scroll + barra de progreso
+  const nav = $('#nav'), progress = $('.progress');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', scrollY > 30);
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.setProperty('--p', max > 0 ? (scrollY / max).toFixed(4) : 0);
+  };
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-// ── Carruseles (productos y opiniones)
-// Mide cuántas tarjetas caben en pantalla según el CSS, en vez de suponerlo.
-function makeSlider({ track, slideSel, dots, nav, prev, next, label }) {
-  const slides = track.querySelectorAll(slideSel);
-  let current = 0;
-  const visible = () => Math.max(1, Math.round(track.parentElement.clientWidth / slides[0].getBoundingClientRect().width));
-  const maxIndex = () => Math.max(0, slides.length - visible());
+  // ── Menú móvil
+  const burger = $('#burger'), links = $('#navlinks');
+  const setMenu = open => {
+    links.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('menu-open', open);
+  };
+  burger.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && links.classList.contains('open')) { setMenu(false); burger.focus(); } });
 
-  function renderDots() {
-    dots.innerHTML = '';
-    const n = maxIndex() + 1;
-    nav.hidden = dots.hidden = n <= 1;   // si todo cabe, no hay nada que deslizar
-    for (let i = 0; i < n; i++) {
-      const d = document.createElement('button');
-      d.className = 'dot';
-      d.setAttribute('aria-label', `${label} ${i + 1} de ${n}`);
-      d.addEventListener('click', () => goTo(i));
-      dots.appendChild(d);
-    }
+  // ── Aparición al hacer scroll
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ── Marquesina y opiniones: se duplican para el desplazamiento infinito (copias ocultas a lectores de pantalla)
+  if (!reduce) {
+    const mt = $('#marqueeTrack'); mt.appendChild(mt.firstElementChild.cloneNode(true));
+    document.querySelectorAll('.r-row').forEach(row => [...row.children].forEach(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); row.appendChild(k); }));
   }
-  function goTo(idx) {
-    current = Math.max(0, Math.min(idx, maxIndex()));
-    track.style.transform = `translateX(-${current * slides[0].getBoundingClientRect().width}px)`;
-    dots.querySelectorAll('.dot').forEach((d, i) => {
-      d.classList.toggle('active', i === current);
-      d.setAttribute('aria-current', i === current ? 'true' : 'false');
+
+  // ── Foto del hero con leve inclinación 3D al mover el mouse
+  const hv = $('#heroVisual'), hp = $('#heroPhoto');
+  if (!reduce && matchMedia('(pointer:fine)').matches) {
+    hv.addEventListener('pointermove', e => {
+      const r = hv.getBoundingClientRect();
+      hp.style.setProperty('--ry', ((e.clientX - r.left) / r.width - .5) * 8 + 'deg');
+      hp.style.setProperty('--rx', ((e.clientY - r.top) / r.height - .5) * -8 + 'deg');
     });
-    prev.disabled = current === 0;
-    next.disabled = current === maxIndex();
+    hv.addEventListener('pointerleave', () => { hp.style.setProperty('--ry', '0deg'); hp.style.setProperty('--rx', '0deg'); });
   }
 
-  prev.addEventListener('click', () => goTo(current - 1));
-  next.addEventListener('click', () => goTo(current + 1));
-  let lastVisible = visible();
-  window.addEventListener('resize', () => {
-    if (visible() !== lastVisible) { lastVisible = visible(); renderDots(); }
-    goTo(current);
+  // ═══ ARMA TU PEDIDO ═══
+  const money = n => '$' + n.toLocaleString('es-CO');
+  const cards = [...document.querySelectorAll('.flavor')];
+  const ids = new Set(cards.map(c => c.dataset.id));
+  let cart = {};
+  try { cart = JSON.parse(localStorage.getItem('papachoz-pedido') || '{}') || {}; } catch (e) { cart = {}; }
+  Object.keys(cart).forEach(k => { if (!ids.has(k) || !(cart[k] > 0)) delete cart[k]; });
+  const save = () => { try { localStorage.setItem('papachoz-pedido', JSON.stringify(cart)); } catch (e) {} };
+
+  const bar = $('#orderbar'), obTotal = $('#obTotal'), obSummary = $('#obSummary'), obSend = $('#obSend'), obClear = $('#obClear');
+  const navCta = $('#navCta'), navCount = $('#navCount'), toast = $('#toast');
+  let toastT;
+  const say = msg => { toast.textContent = msg; toast.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => toast.classList.remove('show'), 1600); };
+
+  function render() {
+    let packs = 0, total = 0; const lines = [];
+    cards.forEach(c => {
+      const q = cart[c.dataset.id] || 0;
+      c.classList.toggle('in-cart', q > 0);
+      c.querySelector('output').textContent = q;
+      if (q > 0) { packs += q; total += q * +c.dataset.price; lines.push(`${q} x ${c.dataset.name}`); }
+    });
+    const show = packs > 0;
+    if (show) { bar.hidden = false; requestAnimationFrame(() => bar.classList.add('show')); }
+    else { bar.classList.remove('show'); setTimeout(() => { if (!bar.classList.contains('show')) bar.hidden = true; }, 450); }
+    document.body.classList.toggle('has-order', show);
+    document.documentElement.style.setProperty('--bar-h', show ? '96px' : '0px');
+    navCta.classList.toggle('has-items', show);
+    navCount.textContent = packs;
+    navCount.setAttribute('aria-label', `${packs} ${packs === 1 ? 'paquete' : 'paquetes'} en tu pedido`);
+    obTotal.textContent = money(total);
+    obSummary.textContent = `${packs} ${packs === 1 ? 'paquete' : 'paquetes'} · ${lines.join(', ')}`;
+    const msg = `¡Hola Papachoz! Quiero hacer este pedido:\n\n${lines.map(l => '• ' + l).join('\n')}\n\nTotal: ${packs} ${packs === 1 ? 'paquete' : 'paquetes'} (${packs * 5} chorizos) = ${money(total)}\n\n¿Me confirman disponibilidad y entrega?`;
+    obSend.href = `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
+  }
+
+  const change = (id, d, name) => {
+    cart[id] = Math.max(0, Math.min(50, (cart[id] || 0) + d));
+    if (!cart[id]) delete cart[id];
+    save(); render();
+    if (d > 0) say(`${name} agregado al pedido`);
+  };
+  cards.forEach(c => {
+    const { id, name } = c.dataset;
+    c.querySelector('.add').addEventListener('click', () => { change(id, 1, name); c.querySelector('.plus').focus(); });
+    c.querySelector('.plus').addEventListener('click', () => change(id, 1, name));
+    c.querySelector('.minus').addEventListener('click', () => { change(id, -1, name); if (!cart[id]) c.querySelector('.add').focus(); });
   });
+  obClear.addEventListener('click', () => { cart = {}; save(); render(); say('Pedido vaciado'); });
+  render();
 
-  let touchX = 0;
-  track.addEventListener('touchstart', e => touchX = e.touches[0].clientX, { passive: true });
-  track.addEventListener('touchend', e => {
-    const diff = touchX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
-  });
-
-  renderDots();
-  goTo(0);
-}
-
-makeSlider({
-  track: document.getElementById('sliderTrack'), slideSel: '.slide',
-  dots: document.getElementById('sliderDots'), nav: document.getElementById('productosNav'),
-  prev: document.getElementById('prev'), next: document.getElementById('next'), label: 'Productos, grupo'
-});
-makeSlider({
-  track: document.getElementById('testiTrack'), slideSel: '.testi-slide',
-  dots: document.getElementById('testiDots'), nav: document.getElementById('testiNav'),
-  prev: document.getElementById('testiPrev'), next: document.getElementById('testiNext'), label: 'Opiniones, grupo'
-});
-
-// ── Franja de beneficios: se duplica para el desplazamiento infinito (copia oculta a lectores de pantalla)
-const bTrack = document.querySelector('.beneficios-track');
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) bTrack.querySelectorAll('.benefit').forEach(b => {
-  const c = b.cloneNode(true);
-  c.setAttribute('aria-hidden', 'true');
-  bTrack.appendChild(c);
-});
-
-// ── Año actual en el pie de página
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// ── Scroll reveal
-const revEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, {threshold: 0.1});
-revEls.forEach(el => obs.observe(el));
+  $('#year').textContent = new Date().getFullYear();
+})();
 </script>
 </body>
 </html>
